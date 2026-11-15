@@ -2,7 +2,7 @@ import { ArrowRight, BadgeCheck, KeyRound, MapPin, ShieldCheck } from "lucide-re
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import PageMeta from "@/components/site/PageMeta";
-import { ContactBand, SectionHeading, WhatsAppLink } from "@/components/site/Shared";
+import { ContactBand, Reveal, SectionHeading, WhatsAppLink } from "@/components/site/Shared";
 import HorizontalCarousel from "@/components/site/HorizontalCarousel";
 import VehicleCard from "@/components/site/VehicleCard";
 import HomeDetailDialog, { type HomeDetail } from "@/components/site/HomeDetailDialog";
@@ -20,6 +20,15 @@ const showroomHighlights = [
   { name: "Kia Sportage", image: "/assets/vehicles/kia-sportage.jpg", maker: "Kia", kind: "vehicle" as const },
   { name: "MINI Cooper", image: "/assets/vehicles/mini-cooper.jpg", maker: "MINI", kind: "vehicle" as const },
   { name: "Range Rover Sport", image: "/assets/vehicles/range-rover-sport.jpg", maker: "Range Rover", kind: "vehicle" as const },
+];
+
+const archivedPartnerLogos = [
+  { name: "Bank Al Yousr", logo: "/assets/partners/bank-al-yousr.png" },
+  { name: "SOFAC", logo: "/assets/partners/sofac.png" },
+  { name: "Wafasalaf", logo: "/assets/partners/wafasalaf.png" },
+  { name: "Salafin", logo: "/assets/partners/salafin.png" },
+  { name: "Maghrebail", logo: "/assets/partners/maghrebail.png" },
+  { name: "Vivalis Salaf", logo: "/assets/partners/vivalis.png" },
 ];
 
 export default function Home() {
@@ -119,7 +128,7 @@ export default function Home() {
       </HorizontalCarousel>
     </div></section>
 
-    <section className="section section-dark section-tight"><div className="container story-grid" style={{ gap: 45 }}><div className="story-copy"><span className="eyebrow eyebrow-light">FINANCEMENT & PARTENAIRES</span><h2>Un projet à étudier selon votre situation.</h2><p>Parlez-nous de votre recherche. Les solutions, organismes et conditions sont présentés selon les informations vérifiées pour chaque dossier; aucune mensualité ou taux n’est présumé.</p><Link className="button button-red" href="/financement">Découvrir le financement <ArrowRight size={16} /></Link></div><div className="partner-carousel-wrap">{partnersQuery.isLoading ? <div className="skeleton" /> : partnersQuery.error ? <p className="partner-disclaimer">Les partenaires ne peuvent pas être chargés pour le moment.</p> : partnersQuery.data?.length ? <><HorizontalCarousel label="Organismes de financement confirmés" className="partner-carousel" autoPlay>{partnersQuery.data.map(partner => <div className="partner-card carousel-item" key={partner.id}>{partner.logoUrl ? <img src={partner.logoUrl} alt={partner.name} loading="lazy" /> : <strong>{partner.name}</strong>}</div>)}</HorizontalCarousel><p className="partner-disclaimer">Partenaires et informations affichés après confirmation.</p></> : <p className="partner-disclaimer">Les partenaires seront affichés après confirmation des accords et conditions.</p>}</div></div></section>
+    <section className="section section-dark section-tight"><div className="container story-grid" style={{ gap: 45 }}><Reveal><div className="story-copy"><span className="eyebrow eyebrow-light">FINANCEMENT & PARTENAIRES</span><h2>Un projet à étudier selon votre situation.</h2><p>Parlez-nous de votre recherche. Les solutions, organismes et conditions sont présentés selon les informations vérifiées pour chaque dossier; aucune mensualité ou taux n’est présumé.</p><Link className="button button-red" href="/financement">Découvrir le financement <ArrowRight size={16} /></Link></div></Reveal><Reveal delay={120}><div className="partner-carousel-wrap">{partnersQuery.isLoading ? <div className="skeleton" /> : partnersQuery.error ? <p className="partner-disclaimer">Les partenaires ne peuvent pas être chargés pour le moment.</p> : partnersQuery.data?.length ? <><HorizontalCarousel label="Organismes de financement confirmés" className="partner-carousel" autoPlay>{partnersQuery.data.map(partner => <div className="partner-card carousel-item" key={partner.id}>{partner.logoUrl ? <img src={partner.logoUrl} alt={partner.name} loading="lazy" /> : <strong>{partner.name}</strong>}</div>)}</HorizontalCarousel><p className="partner-disclaimer">Partenaires et informations affichés après confirmation.</p></> : <><div className="partner-archive-strip">{archivedPartnerLogos.map(partner => <div className="partner-card partner-card-archived" key={partner.name}><img src={partner.logo} alt={partner.name} loading="lazy" /><span className="partner-state">À confirmer</span></div>)}</div><p className="partner-disclaimer">Logos présents dans le dossier historique ; aucun accord n’est publié tant que les conditions ne sont pas confirmées.</p></>}</div></Reveal></div></section>
 
     <ContactBand title="Une question avant votre visite ?" text="Appelez le showroom ou écrivez directement à l’équipe." />
     <HomeDetailDialog detail={activeDetail} onClose={() => setActiveDetail(null)} />
