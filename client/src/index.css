@@ -953,3 +953,16 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
   .reveal { opacity: 1; transform: none; }
   .calculator-pulse { animation: none; }
 }
+
+/* Version ordinateur : boutons plus présents, réguliers et faciles à cliquer. */
+@media (min-width: 761px) {
+  .button { min-height: 50px; min-width: 148px; padding-inline: 23px; font-size: 10px; letter-spacing: .1em; }
+  .button-small { min-height: 42px; min-width: 126px; padding-inline: 17px; font-size: 9px; }
+  .hero .button { min-height: 54px; min-width: 174px; padding-inline: 26px; font-size: 10px; }
+  .hero .button-outline-light { min-width: 166px; }
+  .header-whatsapp { min-width: 132px; min-height: 46px; padding-inline: 17px; font-size: 9px; }
+  .contact-band .button { min-height: 48px; min-width: 142px; }
+  .filter-panel > .button { min-width: 132px; min-height: 44px; padding-inline: 16px; }
+  .home-detail-actions .button { min-width: 132px; min-height: 44px; padding-inline: 15px; font-size: 9px; }
+  .form-card .button, .calculator + .notice + .button { min-width: 174px; }
+}
