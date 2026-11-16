@@ -350,7 +350,17 @@ img { display: block; max-width: 100%; }
 .admin-login-card img { width: 180px; height: 90px; object-fit: contain; margin: 0 auto 20px; }
 .admin-login-card h1 { margin: 0 0 10px; font-size: 30px; letter-spacing: -.06em; }
 .admin-login-card p { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.admin-login-form { display: grid; gap: 8px; margin-top: 22px; text-align: left; }
+.admin-login-form label { color: #555; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.admin-login-form input { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #dad8d5; background: #fff; color: var(--ink); font-size: 13px; outline: none; }
+.admin-login-form input:focus { border-color: var(--brand-red); box-shadow: 0 0 0 2px rgba(229,27,36,.09); }
+.admin-login-form button { width: 100%; margin-top: 9px; }
 .admin-warning { padding: 12px; margin: 12px 0; border-left: 2px solid #d59629; background: #fff8e9; color: #6d531e; font-size: 10px; line-height: 1.7; }
+.admin-access-note { margin: 20px 0; padding: 14px 15px; border: 1px solid #e3d9d5; border-left: 3px solid var(--brand-red); background: #fbf7f5; text-align: left; }
+.admin-access-note .eyebrow { font-size: 8px; }
+.admin-access-note p { margin: 7px 0 9px; font-size: 10px; line-height: 1.6; }
+.admin-access-note a { display: inline-flex; align-items: center; gap: 6px; color: var(--brand-red); font-size: 10px; font-weight: 800; }
+.admin-access-note a:hover { text-decoration: underline; }
 
 .not-found { min-height: 55vh; display: grid; place-items: center; padding: 60px 24px; text-align: center; }
 .not-found h1 { margin: 9px 0; font-size: clamp(42px,7vw,76px); letter-spacing: -.08em; }
