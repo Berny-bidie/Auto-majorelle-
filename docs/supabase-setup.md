@@ -10,7 +10,7 @@ Les variables runtime utilisées côté serveur sont `SUPABASE_URL` et `SUPABASE
 
 ## Premier administrateur
 
-Il n’y a pas d’écran d’inscription public. Dans le tableau de bord Supabase du projet, créez/invitez le premier compte dans **Authentication → Users** et désactivez l’inscription libre des nouveaux utilisateurs dans les réglages Auth du projet. Vérifiez que la connexion par e-mail/mot de passe est autorisée. Aucun rôle administrateur n’est attribué à un compte créé par les visiteurs.
+Il n’y a pas d’écran d’inscription public. Le compte administrateur actuellement autorisé est **`bidieberny1@gmail.com`**. Il se gère dans [Supabase Authentication → Users](https://supabase.com/dashboard/project/vbcwmymamzrnenyilhau/auth/users). Si le mot de passe est inconnu, utilisez la réinitialisation Supabase ; aucun mot de passe n’est stocké dans le dépôt ou accessible au frontend.
 
 Après avoir créé l’utilisateur, exécutez une seule fois dans le SQL Editor, en remplaçant l’adresse par celle du compte autorisé :
 
@@ -18,7 +18,7 @@ Après avoir créé l’utilisateur, exécutez une seule fois dans le SQL Editor
 insert into public.admin_users (user_id, email, role)
 select id, email, 'admin'
 from auth.users
-where lower(email) = lower('admin@example.com')
+where lower(email) = lower('bidieberny1@gmail.com')
 on conflict (user_id) do update
 set email = excluded.email, role = excluded.role;
 ```

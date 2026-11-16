@@ -3,19 +3,22 @@
 ## Liens
 
 - **Administration du site :** ouvrir la route `/admin` depuis l’aperçu Webdev ou le domaine publié.
+- **Utilisateurs Supabase :** https://supabase.com/dashboard/project/vbcwmymamzrnenyilhau/auth/users
 - **Projet Supabase :** https://supabase.com/dashboard/project/vbcwmymamzrnenyilhau
+- **E-mail exact à saisir :** `bidieberny1@gmail.com`
 - **Référence du projet :** `vbcwmymamzrnenyilhau`
 - **Région :** `eu-west-3`
 
 ## État vérifié le 16 novembre 2026
 
-Le projet Supabase `auto-majorel` est actif et sain. Les tables, les règles RLS, les fonctions et les opérations serveur sont connectées au site. Le compte administrateur communiqué par le propriétaire a été retrouvé dans Supabase Auth et autorisé dans `public.admin_users` avec le rôle `admin`.
+Le projet Supabase `auto-majorel` est actif et sain. Les tables, les règles RLS, les fonctions et les opérations serveur sont connectées au site. Le compte `bidieberny1@gmail.com` a été retrouvé dans Supabase Auth et autorisé dans `public.admin_users` avec le rôle `admin`.
 
 ## Donner l’accès à un administrateur
 
-1. Dans le tableau de bord Supabase, ouvrir **Authentication → Users**.
-2. Créer ou inviter le compte avec l’adresse e-mail de la personne qui doit gérer le site.
-3. Dans **SQL Editor**, exécuter cette requête en remplaçant l’adresse :
+1. Ouvrir [Supabase Authentication → Users](https://supabase.com/dashboard/project/vbcwmymamzrnenyilhau/auth/users).
+2. Utiliser le compte `bidieberny1@gmail.com`.
+3. Si le mot de passe est inconnu, sélectionner ce compte et lancer la réinitialisation du mot de passe depuis Supabase.
+4. Dans **SQL Editor**, exécuter cette requête uniquement pour un autre administrateur :
 
 ```sql
 insert into public.admin_users (user_id, email, role)
@@ -26,8 +29,8 @@ on conflict (user_id) do update
 set email = excluded.email, role = excluded.role;
 ```
 
-4. Ouvrir `/admin` et se connecter avec ce compte.
-5. Vérifier les droits dans **Gestion du site**. Le rôle `admin` donne accès aux véhicules, marques, services, financement, articles, demandes et paramètres.
+5. Ouvrir `/admin` et saisir `bidieberny1@gmail.com` avec le mot de passe défini dans Supabase.
+6. Vérifier les droits dans **Gestion du site**. Le rôle `admin` donne accès aux véhicules, marques, services, financement, articles, demandes et paramètres.
 
 Il n’existe pas d’inscription publique d’administrateur. Pour retirer un accès, supprimer la ligne correspondante de `public.admin_users` puis désactiver le compte dans **Authentication → Users**.
 

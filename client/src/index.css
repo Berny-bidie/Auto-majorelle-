@@ -361,6 +361,18 @@ img { display: block; max-width: 100%; }
 .admin-access-note p { margin: 7px 0 9px; font-size: 10px; line-height: 1.6; }
 .admin-access-note a { display: inline-flex; align-items: center; gap: 6px; color: var(--brand-red); font-size: 10px; font-weight: 800; }
 .admin-access-note a:hover { text-decoration: underline; }
+.site a, .site button, .site input, .site select, .site textarea { -webkit-tap-highlight-color: transparent; }
+.site a:focus-visible, .site button:focus-visible, .site input:focus-visible, .site select:focus-visible, .site textarea:focus-visible { outline: 3px solid rgba(229,27,36,.42); outline-offset: 3px; }
+.page-content, .section-surface { background-image: radial-gradient(circle at 10% 0%, rgba(229,27,36,.035), transparent 28%); }
+.page-intro { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid #e5e2dd; }
+.page-intro::after { position: absolute; z-index: -1; right: -90px; bottom: -150px; width: 390px; height: 390px; border: 1px solid rgba(229,27,36,.12); border-radius: 50%; box-shadow: 0 0 0 28px rgba(229,27,36,.025), 0 0 0 57px rgba(229,27,36,.018); content: ""; pointer-events: none; }
+.page-intro .eyebrow, .section-heading .eyebrow { font-weight: 850; }
+.form-card, .info-card, .admin-card, .article-card, .service-card, .vehicle-card { transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease; }
+.form-card:hover, .info-card:hover, .admin-card:hover, .article-card:hover, .service-card:hover, .vehicle-card:hover { border-color: rgba(30,30,32,.18); box-shadow: 0 16px 36px rgba(20,20,22,.07); }
+.button { position: relative; overflow: hidden; transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease; }
+.button::after { position: absolute; top: 0; bottom: 0; left: -45%; width: 25%; background: rgba(255,255,255,.18); content: ""; transform: skewX(-18deg) translateX(-160%); transition: transform .55s ease; }
+.button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(22,22,24,.12); }
+.button:hover::after { transform: skewX(-18deg) translateX(580%); }
 
 .not-found { min-height: 55vh; display: grid; place-items: center; padding: 60px 24px; text-align: center; }
 .not-found h1 { margin: 9px 0; font-size: clamp(42px,7vw,76px); letter-spacing: -.08em; }
