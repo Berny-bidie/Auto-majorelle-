@@ -37,6 +37,13 @@ const activityCards = [
   { icon: MapPin, eyebrow: "VISITE", title: "Un showroom à Alfa 2000", text: "Venez examiner un véhicule sur place à Marrakech. Appelez avant de vous déplacer pour confirmer les horaires et la disponibilité.", href: "/contact", label: "Préparer ma visite" },
 ];
 
+const exploreCards = [
+  { eyebrow: "LE STOCK", title: "Trouver votre prochaine voiture", text: "Parcourez les annonces publiées et demandez les informations utiles avant votre visite.", href: "/vehicules", label: "Parcourir les véhicules", tone: "red" },
+  { eyebrow: "REPRISE", title: "Donner une nouvelle valeur à votre véhicule", text: "Présentez votre véhicule à l’équipe pour étudier une reprise selon votre situation.", href: "/reprise", label: "Découvrir la reprise", tone: "dark" },
+  { eyebrow: "FINANCEMENT", title: "Préparer votre projet sans promesse floue", text: "Les paramètres et conditions sont expliqués uniquement lorsqu’ils sont confirmés.", href: "/financement", label: "Voir le financement", tone: "light" },
+  { eyebrow: "SERVICES", title: "Un accompagnement au même endroit", text: "Recherche, conseil, visite et démarches : avancez avec l’équipe Auto Majorelle.", href: "/services", label: "Explorer les services", tone: "light" },
+];
+
 export default function Home() {
   const { locale } = useLanguage();
   const [activeDetail, setActiveDetail] = useState<HomeDetail | null>(null);
@@ -89,7 +96,7 @@ export default function Home() {
         <h1>À Marrakech,<br />la voiture se choisit <em>en vrai.</em></h1>
         <p>Découvrez les véhicules présentés chez Auto Majorelle. Parcourez les annonces, puis contactez l’équipe pour confirmer la disponibilité et préparer votre visite.</p>
         <div className="hero-actions"><Link className="button button-red" href="/vehicules">Voir les véhicules <ArrowRight size={16} /></Link><Link className="button button-outline-light" href="/contact">Préparer ma visite</Link></div>
-      </div></div>
+      </div><aside className="hero-proof-card"><span className="eyebrow eyebrow-light">AU SHOWROOM</span><strong>Alfa 2000</strong><p>Vente · reprise · financement</p><span className="hero-proof-line" /><small>Angle Av. Allal El Fassi & Av. Yaakoub El Mansour</small><Link href="/contact">Préparer un passage <ArrowRight size={13} /></Link></aside><div className="hero-scroll-cue"><span>FAIRE DÉFILER</span><i /></div></div>
     </section>
 
     <section className="trust-strip" aria-label="Points de contact Auto Majorelle"><div className="container trust-strip-inner">
@@ -111,6 +118,8 @@ export default function Home() {
     </div></section>
 
     <section className="section section-activity"><div className="container"><div className="section-heading"><span className="eyebrow">AUTO MAJORELLE EN PRATIQUE</span><h2>Plus qu’une annonce, un échange.</h2><p>Retrouvez les informations essentielles avant de choisir votre prochain véhicule à Marrakech.</p></div><div className="activity-grid">{activityCards.map(({ icon: Icon, eyebrow, title, text, href, label, external }) => <article className="activity-card" key={title}><div className="activity-icon"><Icon size={21} /></div><span className="eyebrow">{eyebrow}</span><h3>{title}</h3><p>{text}</p><a className="link-arrow" href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>{label} <ArrowRight size={14} /></a></article>)}</div></div></section>
+
+    <section className="section section-explore"><div className="container"><div className="section-topline"><SectionHeading eyebrow="PARCOURIR AUTO MAJORELLE" title="Votre projet commence ici." description="Explorez les différentes étapes et trouvez rapidement le chemin qui vous correspond." /><span className="explore-index">01 — 04</span></div><div className="explore-grid">{exploreCards.map(card => <Link className={`explore-card explore-card-${card.tone}`} href={card.href} key={card.title}><span className="explore-card-number">{String(exploreCards.indexOf(card) + 1).padStart(2, "0")}</span><span className="eyebrow">{card.eyebrow}</span><h3>{card.title}</h3><p>{card.text}</p><span className="explore-card-link">{card.label} <ArrowRight size={15} /></span></Link>)}</div></div></section>
 
     <section className="section section-surface"><div className="container">
       {vehicles.length ? <><div className="section-topline"><SectionHeading eyebrow="LE STOCK DU MOMENT" title="En ce moment au showroom" description="Consultez les annonces et leurs informations détaillées." /><Link className="link-arrow" href="/vehicules">Voir tous les véhicules <ArrowRight size={16} /></Link></div><HorizontalCarousel label="Véhicules disponibles au showroom" className="home-stock-carousel">{vehicles.slice(0, 6).map(vehicle=><div className="carousel-item home-stock-item" key={vehicle.id}><VehicleCard vehicle={vehicle} /></div>)}</HorizontalCarousel></> : <div className="empty-inventory"><div className="empty-inventory-copy"><span className="eyebrow">DISPONIBILITÉS</span><h2>Vous recherchez un modèle précis&nbsp;?</h2><p>Appelez ou écrivez à l’équipe pour connaître les véhicules actuellement présentés avant de vous déplacer.</p><div className="inventory-actions"><a className="button button-light button-small" href={`tel:${contact.phoneRaw}`}>Appeler le showroom</a><WhatsAppLink className="button button-outline-light button-small">Écrire sur WhatsApp</WhatsAppLink></div></div><button type="button" className="empty-inventory-photo" onClick={() => setActiveDetail({ kind: "showroom", title: "Le showroom Auto Majorelle", image: SOURCE_MEDIA.showroomInterior, caption: `Showroom Auto Majorelle · ${contact.address}` })} aria-label="Ouvrir les détails du showroom"><img src={SOURCE_MEDIA.showroomInterior} alt="" loading="lazy" /><span>Voir le showroom <ArrowRight size={14} /></span></button></div>}
