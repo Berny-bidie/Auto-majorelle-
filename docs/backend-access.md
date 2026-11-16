@@ -9,7 +9,7 @@
 
 ## État vérifié le 16 novembre 2026
 
-Le projet Supabase `auto-majorel` est actif et sain. Les tables, les règles RLS, les fonctions et les opérations serveur sont connectées au site. La table `public.admin_users` contient actuellement **0 compte autorisé** : aucun identifiant administrateur ne doit donc être inventé ou partagé.
+Le projet Supabase `auto-majorel` est actif et sain. Les tables, les règles RLS, les fonctions et les opérations serveur sont connectées au site. Le compte administrateur communiqué par le propriétaire a été retrouvé dans Supabase Auth et autorisé dans `public.admin_users` avec le rôle `admin`.
 
 ## Donner l’accès à un administrateur
 

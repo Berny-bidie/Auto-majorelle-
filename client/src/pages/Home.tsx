@@ -1,4 +1,4 @@
-import { ArrowRight, BadgeCheck, KeyRound, MapPin, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeCheck, CarFront, Instagram, KeyRound, MapPin, ShieldCheck } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import PageMeta from "@/components/site/PageMeta";
@@ -29,6 +29,12 @@ const archivedPartnerLogos = [
   { name: "Salafin", logo: "/assets/partners/salafin.png" },
   { name: "Maghrebail", logo: "/assets/partners/maghrebail.png" },
   { name: "Vivalis Salaf", logo: "/assets/partners/vivalis.png" },
+];
+
+const activityCards = [
+  { icon: CarFront, eyebrow: "VÉHICULES", title: "Neuf & occasion au Maroc", text: "Découvrez les véhicules présentés par Auto Majorelle et confirmez chaque disponibilité avec l’équipe.", href: "/vehicules", label: "Voir le catalogue" },
+  { icon: Instagram, eyebrow: "ARRIVAGES", title: "Les nouveautés en images", text: "Les arrivages, vidéos et modèles mis en avant sont aussi relayés sur les réseaux sociaux du showroom.", href: SITE_CONTACT.instagramUrl, label: "Suivre Instagram", external: true },
+  { icon: MapPin, eyebrow: "VISITE", title: "Un showroom à Alfa 2000", text: "Venez examiner un véhicule sur place à Marrakech. Appelez avant de vous déplacer pour confirmer les horaires et la disponibilité.", href: "/contact", label: "Préparer ma visite" },
 ];
 
 export default function Home() {
@@ -103,6 +109,8 @@ export default function Home() {
       <div><span className="eyebrow">DE LA DÉCOUVERTE À LA VISITE</span><h2 className="intro-title">D’abord découvrir.<br /><span>Ensuite, vérifier.</span></h2></div>
       <div className="intro-aside">Un appel à l’équipe permet de confirmer la disponibilité d’un modèle et de préparer votre visite au showroom.</div>
     </div></section>
+
+    <section className="section section-activity"><div className="container"><div className="section-heading"><span className="eyebrow">AUTO MAJORELLE EN PRATIQUE</span><h2>Plus qu’une annonce, un échange.</h2><p>Retrouvez les informations essentielles avant de choisir votre prochain véhicule à Marrakech.</p></div><div className="activity-grid">{activityCards.map(({ icon: Icon, eyebrow, title, text, href, label, external }) => <article className="activity-card" key={title}><div className="activity-icon"><Icon size={21} /></div><span className="eyebrow">{eyebrow}</span><h3>{title}</h3><p>{text}</p><a className="link-arrow" href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>{label} <ArrowRight size={14} /></a></article>)}</div></div></section>
 
     <section className="section section-surface"><div className="container">
       {vehicles.length ? <><div className="section-topline"><SectionHeading eyebrow="LE STOCK DU MOMENT" title="En ce moment au showroom" description="Consultez les annonces et leurs informations détaillées." /><Link className="link-arrow" href="/vehicules">Voir tous les véhicules <ArrowRight size={16} /></Link></div><HorizontalCarousel label="Véhicules disponibles au showroom" className="home-stock-carousel">{vehicles.slice(0, 6).map(vehicle=><div className="carousel-item home-stock-item" key={vehicle.id}><VehicleCard vehicle={vehicle} /></div>)}</HorizontalCarousel></> : <div className="empty-inventory"><div className="empty-inventory-copy"><span className="eyebrow">DISPONIBILITÉS</span><h2>Vous recherchez un modèle précis&nbsp;?</h2><p>Appelez ou écrivez à l’équipe pour connaître les véhicules actuellement présentés avant de vous déplacer.</p><div className="inventory-actions"><a className="button button-light button-small" href={`tel:${contact.phoneRaw}`}>Appeler le showroom</a><WhatsAppLink className="button button-outline-light button-small">Écrire sur WhatsApp</WhatsAppLink></div></div><button type="button" className="empty-inventory-photo" onClick={() => setActiveDetail({ kind: "showroom", title: "Le showroom Auto Majorelle", image: SOURCE_MEDIA.showroomInterior, caption: `Showroom Auto Majorelle · ${contact.address}` })} aria-label="Ouvrir les détails du showroom"><img src={SOURCE_MEDIA.showroomInterior} alt="" loading="lazy" /><span>Voir le showroom <ArrowRight size={14} /></span></button></div>}

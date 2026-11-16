@@ -656,6 +656,15 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
 .intro-title { max-width: 660px; font-size: clamp(39px, 5.2vw, 66px); line-height: 1.02; letter-spacing: -.07em; }
 .intro-title span { color: var(--brand-red); }
 .intro-aside { max-width: 465px; border-left-width: 1px; padding-left: 25px; color: #535256; font-size: 13px; line-height: 1.9; }
+.section-activity { padding-top: 20px; background: #f4f2ee; border-top: 1px solid #e5e2dd; }
+.section-activity .section-heading { max-width: 680px; margin-bottom: 30px; }
+.activity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.activity-card { min-height: 260px; padding: 26px; background: #fff; border: 1px solid #e5e2dd; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.activity-card:hover { transform: translateY(-5px); border-color: rgba(229,27,36,.35); box-shadow: 0 16px 35px rgba(25,25,27,.08); }
+.activity-icon { width: 45px; height: 45px; display: grid; place-items: center; margin-bottom: 24px; background: #19191b; color: #fff; }
+.activity-card .eyebrow { color: var(--brand-red); font-size: 8px; }
+.activity-card h3 { margin: 16px 0 10px; font-size: 21px; line-height: 1.12; letter-spacing: -.05em; }
+.activity-card p { min-height: 62px; margin: 0 0 22px; color: var(--muted); font-size: 11px; line-height: 1.75; }
 
 .section-surface:has(.empty-inventory) { padding-block: 78px; background: #eeece8; }
 .empty-inventory { min-height: 330px; grid-template-columns: 1fr .86fr; place-items: stretch; padding: 0; overflow: hidden; border: 0; background: #19191b; color: white; text-align: left; }
@@ -736,6 +745,10 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
   .intro-grid { grid-template-columns: 1fr; gap: 19px; padding-block: 0; }
   .intro-title { max-width: 530px; font-size: clamp(38px, 10vw, 55px); }
   .intro-aside { max-width: 560px; padding-left: 16px; font-size: 12px; }
+  .section-activity { padding-top: 0; }
+  .activity-grid { grid-template-columns: 1fr; gap: 10px; }
+  .activity-card { min-height: 0; padding: 22px; }
+  .activity-card p { min-height: 0; }
   .section-surface:has(.empty-inventory) { padding-block: 55px; }
   .empty-inventory { grid-template-columns: 1fr; }
   .empty-inventory-copy { padding: 30px 24px; }
