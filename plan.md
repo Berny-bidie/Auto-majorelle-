@@ -34,7 +34,8 @@ Choisir une direction **automobile éditoriale premium** : compositions asymétr
 - **Mouvement** : magazine automobile contemporain, précis et tactile.
 - **Couleurs** : rouge Auto Majorelle pour l’action et la signature, anthracite pour la confiance, ivoire pour laisser respirer les photos et les textes.
 - **Signature** : filets rouges, cartes éditoriales, photos avec légendes et repères géographiques Marrakech / Alfa 2000.
-- **Interaction** : hover discret, focus clavier visible, navigation active, CTA mobile persistant pour appeler ou écrire sur WhatsApp.
+- **Interaction** : hover discret, focus clavier visible, navigation active, CTA mobile persistant pour appeler ou écrire sur WhatsApp. Normaliser les contrôles en trois niveaux (standard, compact, hero) afin de conserver des hauteurs et des espacements prévisibles sur chaque format.
+- **Contenu externe** : ne retenir d’un texte concurrent que les thèmes génériques utiles à l’information automobile ; réécrire pour Auto Majorelle et ne pas importer ses noms, garanties, chiffres de contrôle ou promesses non vérifiées.
 - **Typographie** : Manrope, titres serrés à fort contraste de taille, microcopies courtes en capitales espacées.
 - **Voix** : directe, locale et honnête. Exemple : « Voir la voiture autrement. » et « Préparer votre projet, sans promesse floue. »
 

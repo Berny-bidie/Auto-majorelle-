@@ -4,6 +4,8 @@
 - [x] Appliquer une direction automobile éditoriale premium à l’accueil et aux pages publiques, avec une hiérarchie typographique forte, des photos réelles du showroom et des accents rouges réservés aux actions.
 - [x] Harmoniser les boutons, les cartes, les formulaires, les états focus/hover et la navigation active sur les pages Accueil, Véhicules, Services, Financement, Reprise, Blog, À propos et Contact.
 - [x] Ajouter une navigation mobile claire avec actions persistantes Appeler et WhatsApp, sans masquer le contenu ni supprimer les routes existantes.
+- [x] Normaliser les boutons d’action sur ordinateur, tablette et mobile avec une échelle lisible : bouton standard, bouton compact et CTA hero, sans retour à la ligne ni largeur incohérente.
+- [x] Intégrer les thèmes pertinents du texte fourni dans une section Auto Majorelle dédiée à Marrakech, sans attribuer à Auto Majorelle les promesses ou données commerciales de Global Occaz.
 - [x] Vérifier les routes principales, le typecheck, les tests et le build après la passe de design.
 
 ## 1. Préserver le frontend existant
