@@ -698,6 +698,18 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
 .activity-card .eyebrow { color: var(--brand-red); font-size: 8px; }
 .activity-card h3 { margin: 16px 0 10px; font-size: 21px; line-height: 1.12; letter-spacing: -.05em; }
 .activity-card p { min-height: 62px; margin: 0 0 22px; color: var(--muted); font-size: 11px; line-height: 1.75; }
+.section-why { background: #f7f5f2; border-top: 1px solid #e5e2dd; }
+.section-why .section-heading { max-width: 680px; }
+.why-index { align-self: flex-end; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .16em; }
+.why-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+.why-reveal { min-width: 0; }
+.why-card { position: relative; isolation: isolate; min-height: 315px; display: flex; align-items: flex-end; overflow: hidden; background: #202022; color: #fff; }
+.why-card::before { position: absolute; z-index: -2; inset: 0; background-image: var(--why-image); background-position: center; background-size: cover; content: ""; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+.why-card::after { position: absolute; z-index: -1; inset: 0; background: linear-gradient(0deg, rgba(10,10,11,.94) 0%, rgba(10,10,11,.48) 47%, rgba(10,10,11,.08) 100%); content: ""; }
+.why-card:hover::before { transform: scale(1.06); }
+.why-card-content { width: 100%; padding: 22px 20px 21px; }
+.why-card-content h3 { max-width: 190px; margin: 12px 0 9px; color: #fff; font-size: 22px; line-height: 1.06; letter-spacing: -.055em; }
+.why-card-content p { max-width: 235px; margin: 0; color: rgba(255,255,255,.76); font-size: 11px; line-height: 1.7; }
 .section-explore { padding-top: 78px; background: #19191b; color: #fff; }
 .section-explore .section-heading h2 { color: #fff; }
 .section-explore .section-heading p { color: rgba(255,255,255,.65); }
@@ -1072,6 +1084,12 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
   .reveal { transform: translateY(14px); }
   .local-guide-layout { grid-template-columns: 1fr; gap: 31px; }
   .local-guide-copy h2 { font-size: 39px; }
+  .why-index { display: none; }
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .why-card { min-height: 245px; }
+  .why-card-content { padding: 16px 14px; }
+  .why-card-content h3 { font-size: 17px; }
+  .why-card-content p { font-size: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; }

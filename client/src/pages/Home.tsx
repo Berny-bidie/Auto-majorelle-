@@ -1,5 +1,5 @@
 import { ArrowRight, BadgeCheck, CarFront, KeyRound, MapPin, ShieldCheck } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "wouter";
 import PageMeta from "@/components/site/PageMeta";
 import { ContactBand, Reveal, SectionHeading, WhatsAppLink } from "@/components/site/Shared";
@@ -42,6 +42,13 @@ const exploreCards = [
   { eyebrow: "REPRISE", title: "Donner une nouvelle valeur à votre véhicule", text: "Présentez votre véhicule à l’équipe pour étudier une reprise selon votre situation.", href: "/reprise", label: "Découvrir la reprise", tone: "dark" },
   { eyebrow: "FINANCEMENT", title: "Préparer votre projet sans promesse floue", text: "Les paramètres et conditions sont expliqués uniquement lorsqu’ils sont confirmés.", href: "/financement", label: "Voir le financement", tone: "light" },
   { eyebrow: "SERVICES", title: "Un accompagnement au même endroit", text: "Recherche, conseil, visite et démarches : avancez avec l’équipe Auto Majorelle.", href: "/services", label: "Explorer les services", tone: "light" },
+];
+
+const whyCards = [
+  { eyebrow: "TRANSPARENCE", title: "Des informations lisibles", text: "Chaque annonce rassemble les éléments disponibles et vous invite à demander un complément si nécessaire.", image: SOURCE_MEDIA.showroomInterior },
+  { eyebrow: "DÉTAILS", title: "Regarder la voiture en vrai", text: "Les photos donnent un premier aperçu ; la visite permet de vérifier les détails et de poser les bonnes questions.", image: SOURCE_MEDIA.porscheInterior },
+  { eyebrow: "ACCOMPAGNEMENT", title: "Un échange au cas par cas", text: "Reprise et financement sont étudiés selon votre véhicule, votre recherche et les conditions confirmées.", image: SOURCE_MEDIA.rangeInterior },
+  { eyebrow: "MARRAKECH", title: "Un showroom à Alfa 2000", text: "Retrouvez l’équipe à l’angle des avenues Allal El Fassi et Yaakoub El Mansour, après confirmation de votre passage.", image: SOURCE_MEDIA.facade },
 ];
 
 const marrakechEditorial = [
@@ -126,6 +133,8 @@ export default function Home() {
     <section className="section section-local-guide"><div className="container local-guide-layout"><div className="local-guide-copy"><span className="eyebrow">GUIDE AUTO · MARRAKECH</span><h2>Choisir une voiture d’occasion avec les bonnes informations.</h2><p>Vous cherchez une citadine, une berline, un SUV, une familiale ou un utilitaire à Marrakech ? Auto Majorelle vous permet de parcourir les véhicules présentés, de poser vos questions et de préparer une visite au showroom d’Alfa 2000.</p><p>Les informations, la disponibilité, le financement et la reprise sont étudiés avec l’équipe selon votre projet. Avant de vous déplacer, confirmez toujours le modèle et les modalités qui vous intéressent.</p><div className="local-guide-actions"><Link className="button button-dark" href="/vehicules">Explorer les véhicules <ArrowRight size={16} /></Link><Link className="link-arrow" href="/contact">Parler à l’équipe <ArrowRight size={14} /></Link></div></div><div className="local-guide-facts" aria-label="Parcours Auto Majorelle"><div><strong>01</strong><span>Parcourir les annonces publiées</span></div><div><strong>02</strong><span>Comparer les informations utiles</span></div><div><strong>03</strong><span>Confirmer la visite à Marrakech</span></div></div></div></section>
 
     <section className="section section-activity"><div className="container"><div className="section-heading"><span className="eyebrow">AUTO MAJORELLE EN PRATIQUE</span><h2>Que souhaitez-vous faire&nbsp;?</h2><p>Choisissez votre parcours : acheter, faire étudier une reprise ou préparer votre financement à Marrakech.</p></div><div className="activity-grid">{activityCards.map(({ icon: Icon, eyebrow, title, text, href, label }, index) => <Reveal className="activity-reveal" delay={index * 90} key={title}><article className="activity-card"><div className="activity-icon"><Icon size={21} /></div><span className="eyebrow">{eyebrow}</span><h3>{title}</h3><p>{text}</p><Link className="link-arrow" href={href}>{label} <ArrowRight size={14} /></Link></article></Reveal>)}</div></div></section>
+
+    <section className="section section-why"><div className="container"><div className="section-topline"><SectionHeading eyebrow="POURQUOI AUTO MAJORELLE" title="Un choix à regarder de près." description="Une expérience locale, des informations à vérifier et un showroom pour avancer avec une vision claire." /><span className="why-index">04 REPÈRES</span></div><div className="why-grid">{whyCards.map((card, index) => <Reveal className="why-reveal" delay={index * 80} key={card.title}><article className="why-card" style={{ "--why-image": `url("${card.image}")` } as CSSProperties}><div className="why-card-content"><span className="eyebrow eyebrow-light">{card.eyebrow}</span><h3>{card.title}</h3><p>{card.text}</p></div></article></Reveal>)}</div></div></section>
 
     <section className="section section-explore"><div className="container"><div className="section-topline"><SectionHeading eyebrow="PARCOURIR AUTO MAJORELLE" title="Votre projet commence ici." description="Explorez les différentes étapes et trouvez rapidement le chemin qui vous correspond." /><span className="explore-index">01 — 04</span></div><div className="explore-grid">{exploreCards.map(card => <Link className={`explore-card explore-card-${card.tone}`} href={card.href} key={card.title}><span className="explore-card-number">{String(exploreCards.indexOf(card) + 1).padStart(2, "0")}</span><span className="eyebrow">{card.eyebrow}</span><h3>{card.title}</h3><p>{card.text}</p><span className="explore-card-link">{card.label} <ArrowRight size={15} /></span></Link>)}</div></div></section>
 
