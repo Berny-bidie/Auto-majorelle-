@@ -8,7 +8,7 @@ Le projet WebDev `Auto Majorel` est initialisé avec serveur actif, port 3000 et
 
 ## Approche d’implémentation
 
-1. Importer dans l’espace WebDev le code et les ressources du ZIP fourni, puis garder l’architecture Vite/React/Express/tRPC. Ne pas redessiner les pages. Retirer du `SiteShell` les deux liens d’administration visibles du menu desktop/mobile ; conserver une route directe `/admin` sans lien public.
+1. Importer dans l’espace WebDev le code et les ressources du ZIP fourni, puis garder l’architecture Vite/React/Express/tRPC. Préserver les routes et les contenus existants tout en faisant évoluer le système visuel de façon cohérente. Retirer du `SiteShell` les liens d’administration visibles du menu public ; conserver une route directe `/admin` sans lien public.
 2. Remplacer la couche Drizzle/MySQL par le SDK Supabase et des requêtes serveur tRPC. Les clés de navigateur seront limitées à l’URL Supabase et à la clé publishable ; aucune clé `service_role` ne sera ajoutée au client ni au dépôt. Les requêtes transmettront le JWT de session Supabase Auth et seront également protégées par RLS.
 3. Créer une migration PostgreSQL versionnée pour les administrateurs, marques, véhicules, services, partenaires/conditions de financement confirmés, demandes (contact, essai, financement, reprise), articles et paramètres du site. Les informations inconnues resteront absentes ou explicitement à confirmer ; aucun véhicule, avis, taux ou partenariat fictif ne sera créé.
 4. Activer RLS sur les tables et les objets Storage. Les visiteurs pourront lire uniquement les contenus publiés destinés au public et soumettre des demandes validées ; seuls les comptes Auth inscrits dans `admin_users` pourront gérer les contenus, lire les demandes et modifier les paramètres. Aucun endpoint d’inscription administrateur public ne sera exposé.
@@ -29,7 +29,14 @@ Le projet WebDev `Auto Majorel` est initialisé avec serveur actif, port 3000 et
 
 ## Design
 
-Réutiliser strictement le style automobile premium déjà réalisé dans le frontend fourni : palette rouge/blanc/anthracite, photographies réelles de showroom et de véhicules, compositions et animations existantes. Le travail de cette phase porte sur la sécurité, les données et le branchement fonctionnel, pas sur une refonte visuelle.
+Choisir une direction **automobile éditoriale premium** : compositions asymétriques, grandes accroches typographiques, photos réelles du showroom, accents rouges contrôlés et surfaces anthracite pour guider le parcours. Les principes sont la lisibilité d’abord, la preuve avant la promesse et un appel à l’action unique par étape.
+
+- **Mouvement** : magazine automobile contemporain, précis et tactile.
+- **Couleurs** : rouge Auto Majorelle pour l’action et la signature, anthracite pour la confiance, ivoire pour laisser respirer les photos et les textes.
+- **Signature** : filets rouges, cartes éditoriales, photos avec légendes et repères géographiques Marrakech / Alfa 2000.
+- **Interaction** : hover discret, focus clavier visible, navigation active, CTA mobile persistant pour appeler ou écrire sur WhatsApp.
+- **Typographie** : Manrope, titres serrés à fort contraste de taille, microcopies courtes en capitales espacées.
+- **Voix** : directe, locale et honnête. Exemple : « Voir la voiture autrement. » et « Préparer votre projet, sans promesse floue. »
 
 ## Limites de cette phase
 

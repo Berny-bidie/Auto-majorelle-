@@ -1,5 +1,11 @@
 # TODO — Phase 2 : Backend, Supabase et administration privée Auto Majorel
 
+## 0. Finition UX/UI — passe actuelle
+- [x] Appliquer une direction automobile éditoriale premium à l’accueil et aux pages publiques, avec une hiérarchie typographique forte, des photos réelles du showroom et des accents rouges réservés aux actions.
+- [x] Harmoniser les boutons, les cartes, les formulaires, les états focus/hover et la navigation active sur les pages Accueil, Véhicules, Services, Financement, Reprise, Blog, À propos et Contact.
+- [x] Ajouter une navigation mobile claire avec actions persistantes Appeler et WhatsApp, sans masquer le contenu ni supprimer les routes existantes.
+- [x] Vérifier les routes principales, le typecheck, les tests et le build après la passe de design.
+
 ## 1. Préserver le frontend existant
 - [ ] Conserver intégralement le design, les couleurs, les animations, les composants et la structure actuels.
 - [ ] Ne pas recommencer le site et ne pas modifier inutilement son design.

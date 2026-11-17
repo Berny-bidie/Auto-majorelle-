@@ -19,7 +19,7 @@ export function SiteHeader() {
     <div className="container header-main">
       <Link href="/" className="brand-lockup" onClick={() => setOpen(false)} aria-label="Auto Majorelle — Accueil"><img src={SOURCE_MEDIA.logo} alt="Majorelle Auto" width="164" height="82" /><span className="sr-only">Auto Majorelle</span></Link>
       <button className="menu-toggle" type="button" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
-      <nav className={`primary-nav ${open ? "nav-open" : ""}`} aria-label="Navigation principale">{navItems.map(([label, href]) => <Link key={href} href={href} className={location === href ? "nav-link nav-active" : "nav-link"} onClick={() => setOpen(false)}>{label}</Link>)}<div className="mobile-nav-actions"><LanguageSwitcher /><WhatsAppLink message="Bonjour Auto Majorelle, je souhaite en savoir plus." className="button button-whatsapp">WhatsApp</WhatsAppLink></div></nav>
+      <nav className={`primary-nav ${open ? "nav-open" : ""}`} aria-label="Navigation principale">{navItems.map(([label, href]) => { const active = location === href || (href !== "/" && location.startsWith(href)); return <Link key={href} href={href} className={active ? "nav-link nav-active" : "nav-link"} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>; })}<div className="mobile-nav-actions"><LanguageSwitcher /><WhatsAppLink message="Bonjour Auto Majorelle, je souhaite en savoir plus." className="button button-whatsapp">WhatsApp</WhatsAppLink></div></nav>
       <div className="header-actions"><WhatsAppLink message="Bonjour Auto Majorelle, je souhaite en savoir plus." className="button button-whatsapp header-whatsapp">WhatsApp</WhatsAppLink></div>
     </div>
   </header>;
@@ -46,5 +46,6 @@ export function FloatingContact() {
 }
 
 export function SiteShell({ children }: { children: ReactNode }) {
-  return <div className="site"><SiteHeader /><main>{children}</main><SiteFooter /><FloatingContact /><AssistantChatWidget /></div>;
+  const contact = useSiteSettings();
+  return <div className="site"><SiteHeader /><main>{children}</main><SiteFooter /><FloatingContact /><div className="mobile-action-bar" aria-label="Actions rapides"><a href={`tel:${contact.phoneRaw}`}><Phone size={16} /> Appeler</a><WhatsAppLink message="Bonjour Auto Majorelle, je souhaite en savoir plus." className="mobile-action-whatsapp">WhatsApp</WhatsAppLink></div><AssistantChatWidget /></div>;
 }
