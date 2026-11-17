@@ -690,6 +690,8 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
 .section-activity { padding-top: 20px; background: #f4f2ee; border-top: 1px solid #e5e2dd; }
 .section-activity .section-heading { max-width: 680px; margin-bottom: 30px; }
 .activity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.activity-reveal { height: 100%; }
+.activity-reveal .activity-card { height: 100%; }
 .activity-card { min-height: 260px; padding: 26px; background: #fff; border: 1px solid #e5e2dd; transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
 .activity-card:hover { transform: translateY(-5px); border-color: rgba(229,27,36,.35); box-shadow: 0 16px 35px rgba(25,25,27,.08); }
 .activity-icon { width: 45px; height: 45px; display: grid; place-items: center; margin-bottom: 24px; background: #19191b; color: #fff; }
