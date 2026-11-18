@@ -1129,4 +1129,8 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
   .hero .button { min-height: 48px; min-width: 0; }
   .hero-actions .button { flex: 1 1 0; }
   .contact-band-actions .button { min-width: 0; }
+  .home-page .hero-inner { flex-direction: column; align-items: stretch; }
+  .home-page .hero-proof-card { position: relative; right: auto; bottom: auto; width: min(100%, 292px); margin: 28px 0 0 auto; padding: 16px; animation: none; }
+  .home-page .hero-proof-card strong { font-size: 23px; }
+  .home-page .hero-proof-card small { max-width: 245px; font-size: 9px; }
 }

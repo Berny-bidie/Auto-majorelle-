@@ -111,9 +111,10 @@
 - [ ] Livrer une application réellement connectée à une base de données, pas une simple démonstration avec des données fictives ; le site public et l’administration doivent fonctionner ensemble tout en restant deux espaces distincts.
 
 ## Vérification du 18 novembre 2026
-- [x] Vérifier sur mobile le formulaire de contact : champs lisibles, consentement obligatoire, message d’erreur, appel/WhatsApp accessibles et soumission anti-bot refusée sans écriture de test.
+- [x] Vérifier sur mobile le formulaire de contact : champs lisibles, consentement obligatoire, message d’erreur, appel/WhatsApp accessibles, soumission anti-bot refusée et message de test enregistré avec retour visuel de confirmation.
 - [x] Vérifier sur mobile le panneau de filtres véhicules : recherche, sélecteurs, années, kilométrage, bouton Appliquer et état vide affichés correctement.
 - [x] Enrichir l’accueil avec des repères d’avis clients issus de la fiche Google configurée et une progression financement en trois étapes, tout en conservant la direction Auto Majorelle.
 - [x] Vérifier le raccord frontend/backend : routes publiques en HTTP 200, catalogue et réglages lus depuis Supabase, migrations appliquées et build validé.
-- [ ] Alimenter le catalogue public avec les véhicules réels à publier : la table `public.vehicles` est actuellement vide, donc les filtres fonctionnent mais retournent zéro annonce.
+- [x] Alimenter le catalogue public avec trois véhicules de démonstration clairement identifiés : les filtres et les fiches peuvent maintenant être vérifiés sur des données Supabase publiées.
+- [x] Corriger le hero mobile : le contenu et la carte « Au showroom / Alfa 2000 » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
 - [ ] Activer la protection contre les mots de passe compromis dans Supabase Auth depuis les réglages Authentication.
