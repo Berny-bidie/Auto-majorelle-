@@ -9,7 +9,7 @@ export const SITE_CONTACT = {
   address: "Angle Av. Allal El Fassi & Av. Yaakoub El Mansour, Alfa 2000, Marrakech",
   city: "Marrakech",
   hours: "Lundi–samedi : 09:00–19:00 · Dimanche : sur rendez-vous",
-  hoursNote: "Horaires indiqués sur le site source; appelez avant votre visite.",
+  hoursNote: "Les horaires peuvent évoluer ; confirmez votre passage avant de venir.",
   mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Angle%20Av.%20Allal%20El%20Fassi%20%26%20Av.%20Yaakoub%20El%20Mansour%2C%20Alfa%202000%2C%20Marrakech",
   mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Angle%20Av.%20Allal%20El%20Fassi%20%26%20Av.%20Yaakoub%20El%20Mansour%2C%20Alfa%202000%2C%20Marrakech",
   googleProfileUrl: "https://www.google.com/maps/place/Auto+Majorelle/data=!4m7!3m6!1s0xdafef001880f8b9:0xab6c52b15e1a2956!8m2!3d31.6408401!4d-8.0007864!16s%2Fg%2F11xfhp_8kn!19sChIJufiAGADvrw0RVikaXrFSbKs?hl=fr",

@@ -39,6 +39,10 @@ Choisir une direction **automobile éditoriale premium** : compositions asymétr
 - **Typographie** : Manrope, titres serrés à fort contraste de taille, microcopies courtes en capitales espacées.
 - **Voix** : directe, locale et honnête. Exemple : « Voir la voiture autrement. » et « Préparer votre projet, sans promesse floue. »
 
+## Refonte éditoriale multi-pages
+
+La référence Global Occaz sert uniquement à observer des parcours utiles : recherche par critères, stock récent, reprise en étapes, financement expliqué, réassurance et FAQ. Chaque page Auto Majorelle doit rester locale, sobre et vérifiable : une intention principale, une preuve visuelle, un texte court et un appel à l’action cohérent. Les mentions internes de recherche, de site source ou de dossier historique ne doivent jamais apparaître dans l’espace public.
+
 ## Limites de cette phase
 
 Le domaine final et l’adresse e-mail du premier administrateur ne sont pas fournis. Le site ne sera donc pas publié sur un domaine ni configuré avec un compte d’administration présumé ; les étapes exactes de personnalisation seront documentées. Aucun contenu commercial douteux ou annonce de test ne sera importé en base comme vérité confirmée.
