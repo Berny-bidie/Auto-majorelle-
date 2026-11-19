@@ -6,6 +6,8 @@
 - [x] Ajouter une navigation mobile claire avec actions persistantes Appeler et WhatsApp, sans masquer le contenu ni supprimer les routes existantes.
 - [x] Normaliser les boutons d’action sur ordinateur, tablette et mobile avec une échelle lisible : bouton standard, bouton compact et CTA hero, sans retour à la ligne ni largeur incohérente.
 - [x] Intégrer les thèmes pertinents du texte fourni dans une section Auto Majorelle dédiée à Marrakech, sans attribuer à Auto Majorelle les promesses ou données commerciales de Global Occaz.
+- [x] Ajouter sur l’accueil une synthèse dynamique du stock publié : annonces, marques visibles et boîtes automatiques, alimentée par les données Supabase.
+- [x] Clarifier le catalogue sur mobile et desktop avec le nombre de filtres actifs, l’état « Tout le stock publié » et une réinitialisation désactivée lorsqu’aucun filtre n’est appliqué.
 - [x] Vérifier les routes principales, le typecheck, les tests et le build après la passe de design.
 
 ## 1. Préserver le frontend existant

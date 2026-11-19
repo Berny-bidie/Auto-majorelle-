@@ -247,6 +247,9 @@ img { display: block; max-width: 100%; }
 .filter-field input:focus, .filter-field select:focus, .field input:focus, .field select:focus, .field textarea:focus, .admin-form input:focus, .admin-form select:focus, .admin-form textarea:focus { border-color: var(--brand-red); box-shadow: 0 0 0 2px rgba(229,27,36,.09); }
 .field textarea, .admin-form textarea { min-height: 110px; resize: vertical; }
 .results-line { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 20px 0; color: var(--muted); font-size: 11px; }
+.results-summary { display: flex; align-items: baseline; gap: 10px; }
+.results-summary small { color: var(--brand-red); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.reset-filter:disabled { opacity: .42; cursor: not-allowed; }
 
 .page-content { padding: 64px 0 88px; }
 .two-col { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: start; }
@@ -471,7 +474,8 @@ img { display: block; max-width: 100%; }
   .filter-panel .filter-search { grid-column: 1 / -1; }
   .filter-panel .filter-field:last-child { grid-column: 1 / -1; }
   .filter-panel .button { grid-column: 1 / -1; }
-  .results-line { align-items: flex-start; flex-direction: column; }
+  .results-line { align-items: stretch; flex-direction: column; }
+  .results-summary { flex-wrap: wrap; gap: 4px 9px; }
   .partner-grid { grid-template-columns: repeat(2,1fr); }
   .partner-card { min-height: 75px; }
   .partner-card img { max-width: 120px; max-height: 42px; }
@@ -1032,12 +1036,19 @@ html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { bord
 }
 
 /* Le stock reste horizontal et piloté par les résultats du catalogue, y compris sur mobile. */
+.stock-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; margin-top: 24px; background: var(--line); border: 1px solid var(--line); }
+.stock-metrics div { display: flex; align-items: baseline; gap: 10px; padding: 13px 15px; background: #fff; }
+.stock-metrics strong { color: var(--brand-red); font-size: 18px; letter-spacing: -.05em; }
+.stock-metrics span { color: var(--muted); font-size: 9px; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
 .inventory-vehicle-carousel, .home-stock-carousel { margin-top: 18px; }
 .inventory-vehicle-item, .home-stock-item { flex-basis: clamp(285px, 31vw, 370px); min-width: 0; }
 .inventory-vehicle-item .vehicle-card, .home-stock-item .vehicle-card { display: flex; height: 100%; flex-direction: column; }
 .inventory-vehicle-item .vehicle-card-body, .home-stock-item .vehicle-card-body { display: flex; flex: 1; flex-direction: column; }
 .inventory-vehicle-item .vehicle-card-bottom, .home-stock-item .vehicle-card-bottom { margin-top: auto; padding-top: 17px; }
 @media (max-width: 760px) {
+  .stock-metrics div { display: block; padding: 11px 9px; }
+  .stock-metrics strong { display: block; font-size: 16px; }
+  .stock-metrics span { display: block; margin-top: 4px; font-size: 7px; line-height: 1.35; }
   .inventory-vehicle-item, .home-stock-item { flex-basis: min(84vw, 360px); }
 }
 
