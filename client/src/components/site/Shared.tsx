@@ -19,7 +19,7 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
         element.classList.add("is-visible");
         observer.disconnect();
       }
-    }, { threshold: 0.12 });
+    }, { threshold: 0.08, rootMargin: "0px 0px -7% 0px" });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);

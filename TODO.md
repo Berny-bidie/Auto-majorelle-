@@ -10,6 +10,7 @@
 - [x] Clarifier le catalogue sur mobile et desktop avec le nombre de filtres actifs, l’état « Tout le stock publié » et une réinitialisation désactivée lorsqu’aucun filtre n’est appliqué.
 - [x] Vérifier les routes principales, le typecheck, les tests et le build après la passe de design.
 - [x] Réécrire les textes publics trop internes ou trop proches d’une note de recherche, harmoniser Accueil, Véhicules, Services, Garanties, Financement, À propos et Contact, et adapter les thèmes de Global Occaz sans importer ses promesses.
+- [x] Ajouter des animations fluides et cohérentes dignes d’une agence haut de gamme : apparitions au scroll, transitions de navigation, micro-interactions des boutons/cartes et désactivation complète avec `prefers-reduced-motion`.
 
 ## 1. Préserver le frontend existant
 - [ ] Conserver intégralement le design, les couleurs, les animations, les composants et la structure actuels.
