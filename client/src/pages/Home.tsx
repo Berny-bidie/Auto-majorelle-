@@ -70,8 +70,8 @@ export default function Home() {
   const automaticCount = vehicles.filter(vehicle => vehicle.transmission.toLowerCase().includes("auto")).length;
   const brands = brandsQuery.data ?? [];
   const reviewCount = GOOGLE_REVIEW_SNAPSHOT.count.split(" ")[0];
-  const snapshotText = locale === "ar" ? `${reviewCount} مراجعة · تم التحقق في 15 نوفمبر 2026` : locale === "en" ? `${reviewCount} reviews · checked November 15, 2026` : `${GOOGLE_REVIEW_SNAPSHOT.count} · relevé le ${GOOGLE_REVIEW_SNAPSHOT.checkedAt}`;
-  const snapshotNote = locale === "ar" ? "عنوان Google يختلف عن Alfa 2000؛ تحقق قبل الزيارة." : locale === "en" ? "Google shows a different address than Alfa 2000; check before visiting." : "L’adresse Google diffère de celle d’Alfa 2000 ; vérifiez avant de venir.";
+  const snapshotText = locale === "ar" ? `${reviewCount} مراجعة · تم التحقق في 21 نوفمبر 2026` : locale === "en" ? `${reviewCount} reviews · checked November 21, 2026` : `${GOOGLE_REVIEW_SNAPSHOT.count} · relevé le ${GOOGLE_REVIEW_SNAPSHOT.checkedAt}`;
+  const snapshotNote = locale === "ar" ? "تحقق من العنوان وساعات العمل قبل الزيارة." : locale === "en" ? "Check the address and opening hours before visiting." : "Vérifiez l’adresse et les horaires avant votre visite.";
   const snapshotRating = locale === "en" ? GOOGLE_REVIEW_SNAPSHOT.rating.replace(",", ".") : GOOGLE_REVIEW_SNAPSHOT.rating;
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -107,7 +107,7 @@ export default function Home() {
         <source src="/assets/showroom-hero.mp4" type="video/mp4" />
       </video>
       <div className="container hero-inner"><div className="hero-copy">
-        <span className="eyebrow eyebrow-light">SHOWROOM AUTO MAJORELLE · ALFA 2000</span>
+        <span className="eyebrow eyebrow-light">SHOWROOM AUTO MAJORELLE · SIDI GHANEM</span>
         <h1>À Marrakech,<br />la voiture se choisit <em>en vrai.</em></h1>
         <p>Découvrez les véhicules présentés chez Auto Majorelle. Parcourez les annonces, puis contactez l’équipe pour confirmer la disponibilité et préparer votre visite.</p>
         <div className="hero-actions"><Link className="button button-red" href="/vehicules">Voir les véhicules <ArrowRight size={16} /></Link><Link className="button button-outline-light" href="/contact">Préparer ma visite</Link></div>
@@ -115,7 +115,7 @@ export default function Home() {
     </section>
 
     <section className="trust-strip" aria-label="Points de contact Auto Majorelle"><div className="container trust-strip-inner">
-      <a className="trust-item" href={contact.mapsDirectionsUrl} target="_blank" rel="noreferrer"><span className="trust-label">SHOWROOM</span><b>Alfa 2000 · Marrakech <ArrowRight size={12} /></b></a>
+      <a className="trust-item" href={contact.mapsDirectionsUrl} target="_blank" rel="noreferrer"><span className="trust-label">SHOWROOM</span><b>Sidi Ghanem · Marrakech <ArrowRight size={12} /></b></a>
       <div className="trust-item"><span className="trust-label">HORAIRES</span><b>{contact.hours}</b></div>
       <a className="trust-item trust-item-rating" href={SITE_CONTACT.googleProfileUrl} target="_blank" rel="noreferrer"><span className="trust-label">AVIS GOOGLE</span><b><span className="trust-stars">★★★★★</span> {snapshotRating} · {GOOGLE_REVIEW_SNAPSHOT.count}</b></a>
     </div></section>
@@ -154,8 +154,8 @@ export default function Home() {
     </div></section>
 
     <section className="section section-surface"><div className="container story-grid">
-      <button type="button" className="story-image" onClick={() => setActiveDetail({ kind: "showroom", title: "Auto Majorelle · Alfa 2000", image: SOURCE_MEDIA.facade, caption: `Façade du showroom · ${contact.address}` })} aria-label="Ouvrir les détails du showroom Auto Majorelle"><img src={SOURCE_MEDIA.facade} alt="" loading="lazy" /><span className="story-image-caption">Voir le showroom <ArrowRight size={13} /></span></button>
-      <div className="story-copy"><span className="eyebrow">À PROPOS</span><h2>Un showroom à Alfa 2000, Marrakech.</h2><p>Vente de véhicules, reprise et financement : Auto Majorelle réunit ces démarches au même endroit. Retrouvez l’équipe au showroom pour examiner un véhicule, poser vos questions et connaître les modalités adaptées à votre situation.</p><div className="story-points"><div className="story-point"><BadgeCheck size={16} /> Annonces et détails véhicule</div><div className="story-point"><ShieldCheck size={16} /> Conditions expliquées au cas par cas</div><div className="story-point"><MapPin size={16} /> Angle Allal El Fassi & Yaakoub El Mansour</div><div className="story-point"><KeyRound size={16} /> Reprise et financement à étudier</div></div><Link className="link-arrow" href="/a-propos">L’histoire du showroom <ArrowRight size={16} /></Link></div>
+      <button type="button" className="story-image" onClick={() => setActiveDetail({ kind: "showroom", title: "Auto Majorelle · Sidi Ghanem", image: SOURCE_MEDIA.facade, caption: `Façade du showroom · ${contact.address}` })} aria-label="Ouvrir les détails du showroom Auto Majorelle"><img src={SOURCE_MEDIA.facade} alt="" loading="lazy" /><span className="story-image-caption">Voir le showroom <ArrowRight size={13} /></span></button>
+      <div className="story-copy"><span className="eyebrow">À PROPOS</span><h2>Un showroom à Sidi Ghanem, Marrakech.</h2><p>Vente de véhicules, reprise et financement : Auto Majorelle réunit ces démarches au même endroit. Retrouvez l’équipe au showroom pour examiner un véhicule, poser vos questions et connaître les modalités adaptées à votre situation.</p><div className="story-points"><div className="story-point"><BadgeCheck size={16} /> Annonces et détails véhicule</div><div className="story-point"><ShieldCheck size={16} /> Conditions expliquées au cas par cas</div><div className="story-point"><MapPin size={16} /> Quartier industriel Sidi Ghanem 127</div><div className="story-point"><KeyRound size={16} /> Reprise et financement à étudier</div></div><Link className="link-arrow" href="/a-propos">L’histoire du showroom <ArrowRight size={16} /></Link></div>
     </div></section>
 
     <section className="section"><div className="container">

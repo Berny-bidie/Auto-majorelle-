@@ -46,9 +46,9 @@ export default function ContactPage() {
       <div><div className="contact-info-list">
         <div className="contact-info-item"><span className="contact-info-icon"><Phone size={17}/></span><div><b>Téléphone</b><a href={`tel:${contact.phoneRaw}`}>{contact.phone}</a><a href={`tel:${contact.secondaryPhoneRaw}`}>{contact.secondaryPhone}</a></div></div>
         <div className="contact-info-item"><span className="contact-info-icon"><Mail size={17}/></span><div><b>E-mail</b><a href={`mailto:${contact.email}`}>{contact.email}</a></div></div>
-        <div className="contact-info-item"><span className="contact-info-icon"><MapPin size={17}/></span><div><b>Showroom Auto Majorelle</b><p>{contact.address}</p><p>{contact.hours}<br /><small>Les horaires peuvent évoluer : confirmez votre passage avant de venir.</small></p></div></div>
+        <div className="contact-info-item"><span className="contact-info-icon"><MapPin size={17}/></span><div><b>Showroom Auto Majorelle</b><p>{contact.address}</p><p>{contact.hours}<br /><small>{contact.hoursNote}</small></p></div></div>
       </div>
-      <div className="notice notice-info" style={{ marginTop: 22 }}>Pour vous éviter un déplacement inutile, confirmez l’adresse et l’horaire avec l’équipe avant votre visite.</div>
+      <div className="notice notice-info" style={{ marginTop: 22 }}>Adresse et horaires relevés sur la fiche Google Maps officielle d’Auto Majorelle. Appelez avant votre visite en cas de changement.</div>
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 17 }}><a className="button button-dark" href={contact.mapsDirectionsUrl} target="_blank" rel="noreferrer">Itinéraire vers le showroom</a><a className="button button-outline" href={SITE_CONTACT.googleProfileUrl} target="_blank" rel="noreferrer">Fiche Google · {GOOGLE_REVIEW_SNAPSHOT.rating}</a></div>
       <iframe className="map-frame" title="Recherche sur Google Maps pour Auto Majorelle à l’adresse du showroom" src={mapUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade" style={{ marginTop: 25 }} />
       </div>

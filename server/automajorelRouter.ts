@@ -22,7 +22,7 @@ const DEFAULT_SETTINGS: Record<string, string> = {
   financingAnnualRate: "",
   financingRateConfirmed: "false",
   financingRateSource: "",
-  internalAddressNote: "Adresse Alfa 2000 choisie par l’entreprise. Ne pas copier le Place ID de la fiche Sidi Ghanem.",
+  internalAddressNote: "Adresse relevée sur la fiche Google Maps : Quartier industriel Sidi Ghanem 127, Marrakech 40000, Maroc. Vérifier les changements directement sur la fiche avant publication.",
 };
 const settingPublicKeys = new Set(["businessName", "phone", "phoneRaw", "secondaryPhone", "secondaryPhoneRaw", "whatsapp", "email", "address", "hours", "instagramUrl", "facebookUrl", "tiktokUrl"]);
 const vehicleSelect = "id,brand_id,slug,model,year,price_dh,mileage_km,fuel,transmission,power_cv,category,description,equipment,images,availability,published,featured,warranty_note,published_at,created_at,updated_at,brands(name)";

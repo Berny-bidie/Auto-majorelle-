@@ -8,12 +8,12 @@ export const SITE_CONTACT = {
   email: "contact.automajorelle@gmail.com",
   address: "Angle Av. Allal El Fassi & Av. Yaakoub El Mansour, Alfa 2000, Marrakech",
   city: "Marrakech",
-  hours: "Lundi–samedi : 09:00–19:00 · Dimanche : sur rendez-vous",
-  hoursNote: "Les horaires peuvent évoluer ; confirmez votre passage avant de venir.",
-  mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Angle%20Av.%20Allal%20El%20Fassi%20%26%20Av.%20Yaakoub%20El%20Mansour%2C%20Alfa%202000%2C%20Marrakech",
-  mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Angle%20Av.%20Allal%20El%20Fassi%20%26%20Av.%20Yaakoub%20El%20Mansour%2C%20Alfa%202000%2C%20Marrakech",
-  googleProfileUrl: "https://www.google.com/maps/place/Auto+Majorelle/data=!4m7!3m6!1s0xdafef001880f8b9:0xab6c52b15e1a2956!8m2!3d31.6408401!4d-8.0007864!16s%2Fg%2F11xfhp_8kn!19sChIJufiAGADvrw0RVikaXrFSbKs?hl=fr",
-  googleDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Auto+Majorelle&destination_place_id=ChIJufiAGADvrw0RVikaXrFSbKs",
+  hours: "Lundi–samedi : 09:00–22:00 · Dimanche : fermé",
+  hoursNote: "Horaires relevés sur la fiche Google Maps; appelez avant votre visite.",
+  mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Maroc",
+  mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Maroc",
+  googleProfileUrl: "https://maps.app.goo.gl/33s4mzAFfpguhTo27",
+  googleDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Auto%20Majorelle%2C%20Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Maroc",
   instagramUrl: "https://www.instagram.com/auto_majorelle",
   facebookUrl: "https://www.facebook.com/automajorelle",
   tiktokUrl: "https://www.tiktok.com/@auto_majorelle",
@@ -22,8 +22,8 @@ export const SITE_CONTACT = {
 export const GOOGLE_REVIEW_SNAPSHOT = {
   rating: "4,8/5",
   count: "49 avis",
-  checkedAt: "15 novembre 2026",
-  note: "Note et volume observés sur la fiche Google d’Auto Majorelle; consultez la fiche pour les données les plus récentes.",
+  checkedAt: "21 novembre 2026",
+  note: "Note, volume, adresse et horaires relevés sur la fiche Google Maps d’Auto Majorelle; consultez la fiche pour les données les plus récentes.",
 };
 
 export const GOOGLE_REVIEWS = [
@@ -51,7 +51,7 @@ export const GOOGLE_REVIEWS = [
 ] as const;
 
 export const SOURCE_MEDIA = {
-  logo: "/assets/brand/majorelle-logo-cropped.png",
+  logo: "/assets/brand/majorelle-auto-logo-new.png",
   hero: "/assets/showroom/showroom-mini-front.jpg",
   showroomRear: "/assets/showroom/showroom-range-rover-rear.jpg",
   facade: "/assets/showroom/majorelle-auto-facade.jpg",
