@@ -22,7 +22,7 @@ const DEFAULT_SETTINGS: Record<string, string> = {
   financingAnnualRate: "",
   financingRateConfirmed: "false",
   financingRateSource: "",
-  internalAddressNote: "Adresse relevée sur la fiche Google Maps : Quartier industriel Sidi Ghanem 127, Marrakech 40000, Maroc. Vérifier les changements directement sur la fiche avant publication.",
+  internalAddressNote: "Adresse publique communiquée par l’entreprise : utilisez la même adresse sur les pages et les liens d’itinéraire.",
 };
 const settingPublicKeys = new Set(["businessName", "phone", "phoneRaw", "secondaryPhone", "secondaryPhoneRaw", "whatsapp", "email", "address", "hours", "instagramUrl", "facebookUrl", "tiktokUrl"]);
 const vehicleSelect = "id,brand_id,slug,model,year,price_dh,mileage_km,fuel,transmission,power_cv,category,description,equipment,images,availability,published,featured,warranty_note,published_at,created_at,updated_at,brands(name)";
@@ -64,6 +64,14 @@ async function readSettings(ctx: TrpcContext, includePrivate = false) {
   if (error) failDb(error);
   const values = Object.fromEntries((data ?? []).map(row => [row.key, row.value]));
   const merged = { ...DEFAULT_SETTINGS, ...values };
+  const configuredAddress = typeof values.address === "string" ? values.address.trim() : "";
+  if (configuredAddress && configuredAddress !== SITE_CONTACT.address && /(?:Alfa\s*2000|Allal El Fassi|Yaakoub El Mansour|Quartier industriel Sidi Ghanem 127)/i.test(configuredAddress)) {
+    merged.address = SITE_CONTACT.address;
+  }
+  const internalAddressNote = typeof values.internalAddressNote === "string" ? values.internalAddressNote : "";
+  if (/Adresse relevée sur la fiche Google Maps/i.test(internalAddressNote)) {
+    merged.internalAddressNote = DEFAULT_SETTINGS.internalAddressNote;
+  }
   if (!includePrivate) {
     delete merged.internalAddressNote;
     const rateConfirmed = values.financingRateConfirmed === "true" && Boolean(values.financingRateSource?.trim()) && Boolean(values.financingAnnualRate?.trim());

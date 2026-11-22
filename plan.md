@@ -33,7 +33,7 @@ Choisir une direction **automobile éditoriale premium** : compositions asymétr
 
 - **Mouvement** : magazine automobile contemporain, précis et tactile.
 - **Couleurs** : rouge Auto Majorelle pour l’action et la signature, anthracite pour la confiance, ivoire pour laisser respirer les photos et les textes.
-- **Signature** : filets rouges, cartes éditoriales, photos avec légendes et repères géographiques Marrakech / Sidi Ghanem.
+- **Signature** : filets rouges, cartes éditoriales, photos avec légendes et repères géographiques liés à Marrakech et à Sidi Ghanem.
 - **Interaction** : hover discret, focus clavier visible, navigation active, CTA mobile persistant pour appeler ou écrire sur WhatsApp. Normaliser les contrôles en trois niveaux (standard, compact, hero) afin de conserver des hauteurs et des espacements prévisibles sur chaque format.
 - **Animation** : entrées courtes au chargement, révélations déclenchées légèrement avant l’arrivée dans le viewport, déplacement d’image très lent dans les héros, élévation de 2 à 6 px sur les cartes et translations d’icônes de 3 à 6 px sur les appels à l’action. Aucun effet ne doit retarder la lecture ou gêner la navigation clavier ; `prefers-reduced-motion` désactive les mouvements.
 - **Contenu externe** : ne retenir d’un texte concurrent que les thèmes génériques utiles à l’information automobile ; réécrire pour Auto Majorelle et ne pas importer ses noms, garanties, chiffres de contrôle ou promesses non vérifiées.
