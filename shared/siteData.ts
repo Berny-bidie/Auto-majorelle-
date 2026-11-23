@@ -1,5 +1,5 @@
 export const SITE_CONTACT = {
-  name: "Auto Majorelle",
+  name: "automajorelle",
   phone: "+212 678 880 268",
   phoneRaw: "+212678880268",
   secondaryPhone: "+212 660 889 030",
@@ -13,17 +13,24 @@ export const SITE_CONTACT = {
   mapsSearchUrl: "https://www.google.com/maps/search/?api=1&query=Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Marrakech-Safi%2C%20Maroc",
   mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Marrakech-Safi%2C%20Maroc",
   googleProfileUrl: "https://maps.app.goo.gl/33s4mzAFfpguhTo27",
-  googleDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Auto%20Majorelle%2C%20Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Marrakech-Safi%2C%20Maroc",
+  googleDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=automajorelle%2C%20Quartier%20industriel%20Sidi%20Ghanem%20127%2C%20Marrakech%2040000%2C%20Marrakech-Safi%2C%20Maroc",
   instagramUrl: "https://www.instagram.com/auto_majorelle",
   facebookUrl: "https://www.facebook.com/automajorelle",
   tiktokUrl: "https://www.tiktok.com/@auto_majorelle",
 } as const;
 
+export function normalizeBrandName(value: unknown): string {
+  if (typeof value !== "string" || !value.trim()) return SITE_CONTACT.name;
+  return value.trim()
+    .replace(/\b(?:auto[\s_-]+majorelle|majorelle[\s_-]+auto)\b/gi, SITE_CONTACT.name)
+    .replace(/أوتو\s+ماجوريل/gu, SITE_CONTACT.name);
+}
+
 export const GOOGLE_REVIEW_SNAPSHOT = {
   rating: "4,8/5",
   count: "49 avis",
   checkedAt: "21 novembre 2026",
-  note: "Note et volume relevés sur la fiche Google Maps d’Auto Majorelle; confirmez l’adresse et les horaires auprès de l’entreprise avant votre visite.",
+  note: "Note et volume relevés sur la fiche Google Maps d’automajorelle; confirmez l’adresse et les horaires auprès de l’entreprise avant votre visite.",
 };
 
 export const GOOGLE_REVIEWS = [

@@ -15,8 +15,8 @@ export default function HomeDetailDialog({ detail, onClose }: Props) {
   const contact = useSiteSettings();
   const open = Boolean(detail);
   const whatsappMessage = detail?.kind === "vehicle"
-    ? `Bonjour Auto Majorelle, je souhaite vérifier la disponibilité du ${detail.title}.`
-    : "Bonjour Auto Majorelle, je souhaite en savoir plus sur votre showroom et les véhicules disponibles.";
+    ? `Bonjour automajorelle, je souhaite vérifier la disponibilité du ${detail.title}.`
+    : "Bonjour automajorelle, je souhaite en savoir plus sur votre showroom et les véhicules disponibles.";
 
   return <Dialog open={open} onOpenChange={nextOpen => { if (!nextOpen) onClose(); }}>
     <DialogContent className="home-detail-dialog" aria-describedby="home-detail-description">
@@ -29,7 +29,7 @@ export default function HomeDetailDialog({ detail, onClose }: Props) {
             {detail.kind === "vehicle"
               ? `Modèle aperçu dans la vidéo de présentation. L’année, la finition et la disponibilité de l’exemplaire sont à confirmer auprès de l’équipe.`
               : detail.kind === "brand"
-                ? detail.officialUrl ? `Consultez les informations du constructeur sur son site officiel. Ce lien ne confirme pas la disponibilité d’un véhicule chez Auto Majorelle.` : `Aucun site officiel n’a été confirmé pour cette marque.`
+                ? detail.officialUrl ? `Consultez les informations du constructeur sur son site officiel. Ce lien ne confirme pas la disponibilité d’un véhicule chez automajorelle.` : `Aucun site officiel n’a été confirmé pour cette marque.`
                 : detail.caption}
           </DialogDescription>
 
@@ -40,7 +40,7 @@ export default function HomeDetailDialog({ detail, onClose }: Props) {
           <div className="home-detail-actions">
             {detail.kind === "brand" ? detail.officialUrl ? <a className="button button-red" href={detail.officialUrl} target="_blank" rel="noreferrer">Site officiel <ExternalLink size={15} /></a> : null : detail.kind === "vehicle" && detail.officialUrl ? <a className="button button-outline" href={detail.officialUrl} target="_blank" rel="noreferrer">Site officiel {detail.maker} <ExternalLink size={14} /></a> : <a className="button button-outline" href={`tel:${contact.phoneRaw}`}>Appeler le showroom</a>}
             {detail.kind === "brand"
-              ? <Link className="button button-dark" href="/vehicules">Catalogue Auto Majorelle <ArrowRight size={15} /></Link>
+              ? <Link className="button button-dark" href="/vehicules">Catalogue automajorelle <ArrowRight size={15} /></Link>
               : <WhatsAppLink className="button button-dark" message={whatsappMessage}>Écrire à l’équipe <ArrowRight size={15} /></WhatsAppLink>}
           </div>
         </div>

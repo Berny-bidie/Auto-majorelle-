@@ -5,7 +5,7 @@ import { useLanguage } from "@/lib/i18n";
 
 const copy = {
   fr: {
-    title: "Assistant Auto Majorelle",
+    title: "Assistant automajorelle",
     subtitle: "Des repères utiles pour votre projet automobile",
     open: "Ouvrir l’assistant automobile",
     close: "Fermer l’assistant",
@@ -14,7 +14,7 @@ const copy = {
     prompts: ["Quels véhicules sont disponibles ?", "Comment fonctionne le financement ?", "Comment faire reprendre ma voiture ?"],
   },
   en: {
-    title: "Auto Majorelle assistant",
+    title: "automajorelle assistant",
     subtitle: "Helpful guidance for your car plans",
     open: "Open the car assistant",
     close: "Close the assistant",
@@ -23,7 +23,7 @@ const copy = {
     prompts: ["Which vehicles are available?", "How does financing work?", "How can I trade in my car?"],
   },
   ar: {
-    title: "مساعد أوتو ماجوريل",
+    title: "مساعد automajorelle",
     subtitle: "إرشادات مفيدة لمشروعك المتعلق بالسيارات",
     open: "افتح مساعد السيارات",
     close: "أغلق المساعد",

@@ -53,6 +53,10 @@ img { display: block; max-width: 100%; }
 .header-main { min-height: 80px; display: flex; align-items: center; gap: 38px; }
 .brand-lockup { display: inline-flex; flex: 0 0 170px; align-items: center; }
 .brand-lockup img { width: 164px; height: 64px; object-fit: contain; }
+.brand-wordmark { display: inline-flex; align-items: baseline; direction: ltr; color: var(--ink); font-size: 17px; font-weight: 800; letter-spacing: -.055em; line-height: 1; text-transform: lowercase; white-space: nowrap; }
+.brand-wordmark-prefix { color: var(--brand-red); }
+.brand-wordmark--inverse { color: #fff; }
+.admin-login-card .brand-wordmark { margin-bottom: 20px; }
 .primary-nav { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 1.6vw, 24px); flex: 1; }
 .nav-link { position: relative; padding: 10px 0; color: #555; font-size: 11px; font-weight: 700; letter-spacing: .03em; white-space: nowrap; transition: color .2s ease; }
 .nav-link::after { content: ""; position: absolute; bottom: 3px; left: 0; width: 0; height: 1px; background: var(--brand-red); transition: width .22s ease; }
@@ -647,7 +651,7 @@ html[dir="rtl"] .footer-nav > div, html[dir="rtl"] .footer-contact { align-items
 html[dir="rtl"] .blog-draft-notice, html[dir="rtl"] .blog-article-warning { border-left-width: 1px; border-right: 3px solid #b57b16; }
 
 
-/* Accueil Auto Majorelle — finition éditoriale, repères locaux et photos au premier plan. */
+/* Accueil automajorelle — finition éditoriale, repères locaux et photos au premier plan. */
 .hero { min-height: min(740px, calc(100svh - 108px)); background: #171719; }
 .hero-video { object-position: center 57%; }
 .hero::after { background: linear-gradient(90deg, rgba(9,9,10,.94) 0%, rgba(9,9,10,.80) 31%, rgba(9,9,10,.42) 62%, rgba(9,9,10,.12) 100%), linear-gradient(0deg, rgba(9,9,10,.5), transparent 38%); }

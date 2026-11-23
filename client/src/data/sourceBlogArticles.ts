@@ -30,14 +30,14 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
     },
     "date": "2025-06-10",
     "readingMinutes": 6,
-    "author": "Auto Majorelle",
+    "author": "automajorelle",
     "image": "https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=900&q=85",
     "sections": [
       {
         "type": "paragraph",
-        "fr": "Acheter une voiture occasion à Marrakech peut s'avérer un excellent investissement si vous suivez les bonnes étapes. En tant que concessionnaire spécialisé depuis plus de 20 ans, Auto Majorelle vous guide.",
-        "en": "Buying a used car in Marrakech can prove to be an excellent investment if you follow the right steps. As a dealership specializing in this field for more than 20 years, Auto Majorelle guides you.",
-        "ar": "قد يكون شراء سيارة مستعملة في مراكش استثمارًا ممتازًا إذا اتبعت الخطوات الصحيحة. وبصفتها وكالة متخصصة منذ أكثر من 20 عامًا، ترشدكم أوتو ماجوريل."
+        "fr": "Acheter une voiture occasion à Marrakech peut s'avérer un excellent investissement si vous suivez les bonnes étapes. En tant que concessionnaire spécialisé depuis plus de 20 ans, automajorelle vous guide.",
+        "en": "Buying a used car in Marrakech can prove to be an excellent investment if you follow the right steps. As a dealership specializing in this field for more than 20 years, automajorelle guides you.",
+        "ar": "قد يكون شراء سيارة مستعملة في مراكش استثمارًا ممتازًا إذا اتبعت الخطوات الصحيحة. وبصفتها وكالة متخصصة منذ أكثر من 20 عامًا، ترشدكم automajorelle."
       },
       {
         "type": "heading",
@@ -59,9 +59,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
       },
       {
         "type": "paragraph",
-        "fr": "Un concessionnaire fiable comme Auto Majorelle vous offrira toujours un historique complet, une inspection certifiée, une garantie contractuelle et des papiers en règle.",
-        "en": "A reliable dealership such as Auto Majorelle will always provide you with a complete history, a certified inspection, a contractual warranty, and paperwork in order.",
-        "ar": "ستوفر لك وكالة موثوقة مثل أوتو ماجوريل دائمًا سجلًا كاملًا، وفحصًا معتمدًا، وضمانًا تعاقديًا، وأوراقًا مستوفية للشروط."
+        "fr": "Un concessionnaire fiable comme automajorelle vous offrira toujours un historique complet, une inspection certifiée, une garantie contractuelle et des papiers en règle.",
+        "en": "A reliable dealership such as automajorelle will always provide you with a complete history, a certified inspection, a contractual warranty, and paperwork in order.",
+        "ar": "ستوفر لك وكالة موثوقة مثل automajorelle دائمًا سجلًا كاملًا، وفحصًا معتمدًا، وضمانًا تعاقديًا، وأوراقًا مستوفية للشروط."
       },
       {
         "type": "heading",
@@ -132,9 +132,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
       },
       {
         "type": "paragraph",
-        "fr": "Chez Auto Majorelle Marrakech, chaque véhicule est inspecté en 150 points avant mise en vente, avec garantie minimum 6 mois.",
-        "en": "At Auto Majorelle Marrakech, every vehicle undergoes a 150-point inspection before being put up for sale, with a minimum 6-month warranty.",
-        "ar": "في أوتو ماجوريل مراكش، تخضع كل سيارة لفحص من 150 نقطة قبل عرضها للبيع، مع ضمان لمدة 6 أشهر على الأقل."
+        "fr": "Chez automajorelle Marrakech, chaque véhicule est inspecté en 150 points avant mise en vente, avec garantie minimum 6 mois.",
+        "en": "At automajorelle Marrakech, every vehicle undergoes a 150-point inspection before being put up for sale, with a minimum 6-month warranty.",
+        "ar": "في automajorelle مراكش، تخضع كل سيارة لفحص من 150 نقطة قبل عرضها للبيع، مع ضمان لمدة 6 أشهر على الأقل."
       }
     ],
     "sourceComplete": true
@@ -254,9 +254,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
     "sections": [
       {
         "type": "paragraph",
-        "fr": "Le financement automobile au Maroc a considérablement évolué. Voici toutes les options disponibles chez Auto Majorelle Marrakech.",
-        "en": "Car financing in Morocco has evolved considerably. Here are all the options available at Auto Majorelle Marrakech.",
-        "ar": "شهد تمويل السيارات في المغرب تطورًا كبيرًا. إليكم جميع الخيارات المتاحة لدى أوتو ماجوريل مراكش."
+        "fr": "Le financement automobile au Maroc a considérablement évolué. Voici toutes les options disponibles chez automajorelle Marrakech.",
+        "en": "Car financing in Morocco has evolved considerably. Here are all the options available at automajorelle Marrakech.",
+        "ar": "شهد تمويل السيارات في المغرب تطورًا كبيرًا. إليكم جميع الخيارات المتاحة لدى automajorelle مراكش."
       },
       {
         "type": "heading",
@@ -382,9 +382,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
       },
       {
         "type": "paragraph",
-        "fr": "Auto Majorelle offre une garantie minimum de 6 mois sur tous les véhicules.",
-        "en": "Auto Majorelle offers a minimum 6-month warranty on all vehicles.",
-        "ar": "تقدم أوتو ماجوريل ضمانًا لمدة لا تقل عن 6 أشهر على جميع السيارات."
+        "fr": "automajorelle offre une garantie minimum de 6 mois sur tous les véhicules.",
+        "en": "automajorelle offers a minimum 6-month warranty on all vehicles.",
+        "ar": "تقدم automajorelle ضمانًا لمدة لا تقل عن 6 أشهر على جميع السيارات."
       },
       {
         "type": "heading",
@@ -406,9 +406,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
       },
       {
         "type": "paragraph",
-        "fr": "Avec une note de 4.8/5 sur Google, Auto Majorelle est le concessionnaire premium le mieux noté à Marrakech.",
-        "en": "With a 4.8/5 rating on Google, Auto Majorelle is the highest-rated premium dealership in Marrakech.",
-        "ar": "بتقييم 4.8/5 على Google، تُعد أوتو ماجوريل وكيل السيارات الفاخرة الأعلى تقييمًا في مراكش."
+        "fr": "Avec une note de 4.8/5 sur Google, automajorelle est le concessionnaire premium le mieux noté à Marrakech.",
+        "en": "With a 4.8/5 rating on Google, automajorelle is the highest-rated premium dealership in Marrakech.",
+        "ar": "بتقييم 4.8/5 على Google، تُعد automajorelle وكيل السيارات الفاخرة الأعلى تقييمًا في مراكش."
       }
     ],
     "sourceComplete": true
@@ -511,9 +511,9 @@ export const sourceBlogArticles: SourceBlogArticle[] = [
       },
       {
         "type": "heading",
-        "fr": "Estimation gratuite chez Auto Majorelle",
-        "en": "Free valuation at Auto Majorelle",
-        "ar": "تقييم مجاني لدى أوتو ماجوريل"
+        "fr": "Estimation gratuite chez automajorelle",
+        "en": "Free valuation at automajorelle",
+        "ar": "تقييم مجاني لدى automajorelle"
       },
       {
         "type": "paragraph",

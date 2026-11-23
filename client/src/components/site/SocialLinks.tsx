@@ -5,10 +5,10 @@ type SocialKind = "whatsapp" | "instagram" | "facebook" | "tiktok";
 type SocialLinkItem = { kind: SocialKind; href: string; label: Record<"fr" | "en" | "ar", string> };
 
 const links: SocialLinkItem[] = [
-  { kind: "whatsapp", href: "https://wa.me/212678880268?text=Bonjour%20Auto%20Majorelle%2C%20je%20souhaite%20en%20savoir%20plus.", label: { fr: "WhatsApp Auto Majorelle", en: "Auto Majorelle on WhatsApp", ar: "واتساب أوتو ماجوريل" } },
-  { kind: "instagram", href: "https://www.instagram.com/auto_majorelle/", label: { fr: "Instagram Auto Majorelle", en: "Auto Majorelle on Instagram", ar: "إنستغرام أوتو ماجوريل" } },
-  { kind: "facebook", href: "https://www.facebook.com/automajorelle", label: { fr: "Facebook Auto Majorelle", en: "Auto Majorelle on Facebook", ar: "فيسبوك أوتو ماجوريل" } },
-  { kind: "tiktok", href: "https://www.tiktok.com/@auto_majorelle", label: { fr: "TikTok Auto Majorelle", en: "Auto Majorelle on TikTok", ar: "تيك توك أوتو ماجوريل" } },
+  { kind: "whatsapp", href: "https://wa.me/212678880268?text=Bonjour%20automajorelle%2C%20je%20souhaite%20en%20savoir%20plus.", label: { fr: "WhatsApp automajorelle", en: "automajorelle on WhatsApp", ar: "واتساب automajorelle" } },
+  { kind: "instagram", href: "https://www.instagram.com/auto_majorelle/", label: { fr: "Instagram automajorelle", en: "automajorelle on Instagram", ar: "إنستغرام automajorelle" } },
+  { kind: "facebook", href: "https://www.facebook.com/automajorelle", label: { fr: "Facebook automajorelle", en: "automajorelle on Facebook", ar: "فيسبوك automajorelle" } },
+  { kind: "tiktok", href: "https://www.tiktok.com/@auto_majorelle", label: { fr: "TikTok automajorelle", en: "automajorelle on TikTok", ar: "تيك توك automajorelle" } },
 ];
 
 export function SocialGlyph({ kind }: { kind: SocialKind }) {
@@ -26,9 +26,9 @@ export default function SocialLinks({ className = "" }: { className?: string }) 
   const { locale } = useLanguage();
   const contact = useSiteSettings();
   const messages = {
-    fr: "Bonjour Auto Majorelle, je souhaite en savoir plus.",
-    en: "Hello Auto Majorelle, I would like to know more.",
-    ar: "مرحبًا Auto Majorelle، أود معرفة المزيد.",
+    fr: "Bonjour automajorelle, je souhaite en savoir plus.",
+    en: "Hello automajorelle, I would like to know more.",
+    ar: "مرحبًا automajorelle، أود معرفة المزيد.",
   };
   return <div className={`footer-social social-links ${className}`}>
     {links.map(item => {

@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import type { Database, Json } from "../shared/database.types";
-import { SITE_CONTACT } from "../shared/siteData";
+import { SITE_CONTACT, normalizeBrandName } from "../shared/siteData";
 import { supabasePublishableKey, supabaseUrl } from "./supabase";
 import type { TrpcContext } from "./_core/context";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
@@ -64,6 +64,7 @@ async function readSettings(ctx: TrpcContext, includePrivate = false) {
   if (error) failDb(error);
   const values = Object.fromEntries((data ?? []).map(row => [row.key, row.value]));
   const merged = { ...DEFAULT_SETTINGS, ...values };
+  merged.businessName = normalizeBrandName(values.businessName);
   const configuredAddress = typeof values.address === "string" ? values.address.trim() : "";
   if (configuredAddress && configuredAddress !== SITE_CONTACT.address && /(?:Alfa\s*2000|Allal El Fassi|Yaakoub El Mansour|Quartier industriel Sidi Ghanem 127)/i.test(configuredAddress)) {
     merged.address = SITE_CONTACT.address;
@@ -230,6 +231,7 @@ export const automajorelRouter = router({
       if (rateConfirmed && (!rate || !Number.isFinite(Number(rate)) || Number(rate) < 0 || Number(rate) > 40)) throw new TRPCError({ code: "BAD_REQUEST", message: "Un taux confirmé entre 0 et 40 % et sa source sont requis." });
       const rows = Object.entries(input).filter(([key]) => allowed.has(key)).map(([key, original]) => {
         let value = original;
+        if (key === "businessName") value = normalizeBrandName(value);
         if (key === "financingAnnualRate") value = rateConfirmed ? rate : "";
         if (key === "financingRateConfirmed") value = rateConfirmed ? "true" : "false";
         const confirmedRateKeys = ["financingAnnualRate", "financingRateConfirmed", "financingRateSource"];

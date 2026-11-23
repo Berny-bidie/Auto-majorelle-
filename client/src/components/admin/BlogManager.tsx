@@ -6,7 +6,7 @@ import { trpc } from "@/lib/trpc";
 
 type PostRow={id:number;slug:string;title:string;category:string;excerpt:string;body:string;imageUrl:string;author:string|null;readingMinutes:number;status:"draft"|"published";reviewNotes:string|null;publishedAt:Date|null};
 type PostDraft={title:string;slug:string;category:string;excerpt:string;body:string;imageUrl:string;author:string;readingMinutes:string;status:"draft"|"published";reviewNotes:string};
-const blank:PostDraft={title:"",slug:"",category:"Conseils",excerpt:"",body:"",imageUrl:"",author:"Auto Majorelle",readingMinutes:"5",status:"draft",reviewNotes:""};
+const blank:PostDraft={title:"",slug:"",category:"Conseils",excerpt:"",body:"",imageUrl:"",author:"automajorelle",readingMinutes:"5",status:"draft",reviewNotes:""};
 function fromRow(row:PostRow):PostDraft{return{title:row.title,slug:row.slug,category:row.category,excerpt:row.excerpt,body:row.body,imageUrl:row.imageUrl,author:row.author||"",readingMinutes:String(row.readingMinutes),status:row.status,reviewNotes:row.reviewNotes||""};}
 
 export default function BlogManager(){

@@ -1,4 +1,4 @@
-import { SITE_CONTACT } from "@shared/siteData";
+import { SITE_CONTACT, normalizeBrandName } from "@shared/siteData";
 import { trpc } from "@/lib/trpc";
 
 export function useSiteSettings() {
@@ -7,7 +7,7 @@ export function useSiteSettings() {
   const address = values?.address || SITE_CONTACT.address;
   return {
     ...SITE_CONTACT,
-    name: values?.businessName || SITE_CONTACT.name,
+    name: normalizeBrandName(values?.businessName),
     phone: values?.phone || SITE_CONTACT.phone,
     phoneRaw: values?.phoneRaw || SITE_CONTACT.phoneRaw,
     secondaryPhone: values?.secondaryPhone || SITE_CONTACT.secondaryPhone,
