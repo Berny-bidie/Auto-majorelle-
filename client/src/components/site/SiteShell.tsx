@@ -4,7 +4,7 @@ import { Menu, Phone, X } from "lucide-react";
 import { useSiteSettings } from "@/lib/siteSettings";
 import { LanguageSwitcher, useLanguage } from "@/lib/i18n";
 import { WhatsAppLink } from "./Shared";
-import BrandWordmark from "./BrandWordmark";
+import { SOURCE_MEDIA } from "@shared/siteData";
 import SocialLinks, { WhatsAppMark } from "./SocialLinks";
 import AssistantChatWidget from "./AssistantChatWidget";
 
@@ -17,7 +17,7 @@ export function SiteHeader() {
   return <header className="site-header">
     <div className="topline"><div className="container topline-inner"><span>Marrakech · Showroom automobile</span><div className="topline-actions"><LanguageSwitcher /><a href={`tel:${contact.phoneRaw}`}><Phone size={13} /> {contact.phone}</a></div></div></div>
     <div className="container header-main">
-      <Link href="/" className="brand-lockup" onClick={() => setOpen(false)} aria-label="automajorelle — Accueil"><BrandWordmark /></Link>
+      <Link href="/" className="brand-lockup" onClick={() => setOpen(false)} aria-label="automajorelle — Accueil"><img src={SOURCE_MEDIA.logo} alt="automajorelle" width="150" height="75" /></Link>
       <button className="menu-toggle" type="button" aria-label={open ? "Fermer le menu" : "Ouvrir le menu"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
       <nav className={`primary-nav ${open ? "nav-open" : ""}`} aria-label="Navigation principale">{navItems.map(([label, href]) => { const active = location === href || (href !== "/" && location.startsWith(href)); return <Link key={href} href={href} className={active ? "nav-link nav-active" : "nav-link"} aria-current={active ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>; })}<div className="mobile-nav-actions"><LanguageSwitcher /><WhatsAppLink message="Bonjour automajorelle, je souhaite en savoir plus." className="button button-whatsapp">WhatsApp</WhatsAppLink></div></nav>
       <div className="header-actions"><WhatsAppLink message="Bonjour automajorelle, je souhaite en savoir plus." className="button button-whatsapp header-whatsapp">WhatsApp</WhatsAppLink></div>
@@ -28,7 +28,7 @@ export function SiteHeader() {
 export function SiteFooter() {
   const contact = useSiteSettings();
   return <footer className="site-footer"><div className="container footer-main">
-    <div className="footer-brand"><Link href="/" aria-label="Accueil automajorelle"><BrandWordmark className="brand-wordmark--inverse" /></Link><p>Véhicules, financement et reprise à Marrakech.</p><SocialLinks /></div>
+    <div className="footer-brand"><Link href="/" aria-label="Accueil automajorelle"><img src={SOURCE_MEDIA.logo} alt="automajorelle" width="150" height="75" /></Link><p>Véhicules, financement et reprise à Marrakech.</p><SocialLinks /></div>
     <nav className="footer-nav" aria-label="Liens utiles">
       <div><h3>Découvrir</h3><Link href="/vehicules">Nos véhicules</Link><Link href="/services">Nos services</Link><Link href="/financement">Financement</Link><Link href="/reprise">Reprise</Link></div>
       <div><h3>automajorelle</h3><Link href="/blog">Conseils & actualités</Link><Link href="/a-propos">À propos</Link><Link href="/contact">Contact</Link><Link href="/garanties">Garanties</Link></div>
