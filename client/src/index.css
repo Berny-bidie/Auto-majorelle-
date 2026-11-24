@@ -228,6 +228,8 @@ img { display: block; max-width: 100%; }
 .footer-map-link { color: #f3787e !important; }
 .footer-social { display: flex; align-items: center; gap: 13px; margin-top: 18px; }
 .footer-social a { display: inline-flex; align-items: center; gap: 4px; color: #d0d0d0; font-size: 9px; }
+.footer-social a:first-child { border-color: #25d366; background: #25d366; color: #fff; }
+.footer-social a:first-child:hover { border-color: #128c7e; background: #128c7e; color: #fff; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 25px; padding-block: 18px; border-top: 1px solid rgba(255,255,255,.12); color: #888; font-size: 9px; }
 .footer-bottom a { color: #aaa; }
 .floating-whatsapp { position: fixed; z-index: 35; right: 20px; bottom: 20px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: #18b964; color: #fff; box-shadow: 0 8px 25px rgba(0,0,0,.22); }
