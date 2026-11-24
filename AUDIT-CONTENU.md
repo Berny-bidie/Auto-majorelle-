@@ -24,7 +24,7 @@ La garantie est annoncée à 12 mois sur une section, alors que la FAQ indique d
 
 ## Éléments pratiques à confirmer
 
-La page contact du site source affiche les deux numéros +212 678 880 268 et +212 660 889 030, l’adresse e-mail contact.automajorelle@gmail.com, l’adresse Alfa 2000 à Marrakech et des horaires du lundi au samedi, 9 h–19 h, avec dimanche sur rendez-vous. Elle annonce aussi des essais routiers sur permis valide. Ces informations sont déjà largement reprises dans le projet, mais doivent être reconfirmées par l’entreprise avant mise en ligne définitive.
+La page contact du site source affichait les deux numéros +212 678 880 268 et +212 660 889 030, l’adresse e-mail contact.automajorelle@gmail.com, l’ancienne adresse Alfa 2000 à Marrakech et des horaires du lundi au samedi, 9 h–19 h, avec dimanche sur rendez-vous. L’adresse actuelle fournie par l’entreprise pour le projet est **Quartier industriel Sidi Ghanem 127, Marrakech 40000, Marrakech-Safi, Maroc** et remplace ces anciennes mentions. Les horaires et les conditions d’essai restent à reconfirmer avant publication définitive.
 
 ## Vérifications techniques
 

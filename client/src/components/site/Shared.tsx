@@ -28,7 +28,7 @@ export function Reveal({ children, className = "", delay = 0 }: { children: Reac
 
 export function WhatsAppLink({ children, message, className = "button button-whatsapp" }: { children: ReactNode; message?: string; className?: string }) {
   const contact = useSiteSettings(); const { locale } = useLanguage();
-  const query = encodeURIComponent(translateText(message || "Bonjour Auto Majorelle, je souhaite obtenir des informations.", locale));
+  const query = encodeURIComponent(translateText(message || "Bonjour automajorelle, je souhaite obtenir des informations.", locale));
   return <a className={className} href={`https://wa.me/${contact.whatsapp}?text=${query}`} target="_blank" rel="noreferrer"><WhatsAppMark /> {children}</a>;
 }
 
@@ -38,7 +38,7 @@ export function PrimaryLink({ href, children, className = "button button-dark" }
 
 export function ContactBand({ title = "Parlons de votre projet automobile.", text = "Notre équipe est à votre écoute pour vous orienter vers les bonnes informations." }: { title?: string; text?: string }) {
   const contact = useSiteSettings();
-  return <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow eyebrow-light">AUTO MAJORELLE · MARRAKECH</span><h2>{title}</h2><p>{text}</p></div><div className="contact-band-actions"><a className="button button-light" href={`tel:${contact.phoneRaw}`}>Nous appeler <ArrowRight size={16} /></a><WhatsAppLink className="button button-outline-light">WhatsApp</WhatsAppLink></div></div></section>;
+  return <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow eyebrow-light">automajorelle · MARRAKECH</span><h2>{title}</h2><p>{text}</p></div><div className="contact-band-actions"><a className="button button-light" href={`tel:${contact.phoneRaw}`}>Nous appeler <ArrowRight size={16} /></a><WhatsAppLink className="button button-outline-light">WhatsApp</WhatsAppLink></div></div></section>;
 }
 
 export function Notice({ children, kind = "info" }: { children: ReactNode; kind?: "info" | "success" | "error" }) {
@@ -47,5 +47,5 @@ export function Notice({ children, kind = "info" }: { children: ReactNode; kind?
 
 export function PageIntro({ eyebrow, title, intro, image, imagePosition = "center" }: { eyebrow: string; title: string; intro: string; image?: string; imagePosition?: string }) {
   const style = image ? ({ "--page-intro-image": `url("${image}")`, "--page-intro-position": imagePosition } as CSSProperties) : undefined;
-  return <section className={`page-intro${image ? " page-intro-photo" : ""}`} style={style}><div className="container"><div className="breadcrumb"><Link href="/">Accueil</Link><span> / </span><span>{eyebrow}</span></div><div className="page-intro-copy"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{intro}</p>{image&&<div className="page-intro-proof"><span>Auto Majorelle</span><i aria-hidden="true"/><span>Votre concessionnaire à Marrakech</span></div>}</div></div></section>;
+  return <section className={`page-intro${image ? " page-intro-photo" : ""}`} style={style}><div className="container"><div className="breadcrumb"><Link href="/">Accueil</Link><span> / </span><span>{eyebrow}</span></div><div className="page-intro-copy"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{intro}</p>{image&&<div className="page-intro-proof"><span>automajorelle</span><i aria-hidden="true"/><span>Votre concessionnaire à Marrakech</span></div>}</div></div></section>;
 }

@@ -120,5 +120,5 @@
 - [x] Enrichir l’accueil avec des repères d’avis clients issus de la fiche Google configurée et une progression financement en trois étapes, tout en conservant la direction Auto Majorelle.
 - [x] Vérifier le raccord frontend/backend : routes publiques en HTTP 200, catalogue et réglages lus depuis Supabase, migrations appliquées et build validé.
 - [x] Alimenter le catalogue public avec trois véhicules de démonstration clairement identifiés : les filtres et les fiches peuvent maintenant être vérifiés sur des données Supabase publiées.
-- [x] Corriger le hero mobile : le contenu et la carte « Au showroom / Alfa 2000 » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
+- [x] Corriger le hero mobile : le contenu et la carte « Au showroom » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
 - [ ] Activer la protection contre les mots de passe compromis dans Supabase Auth depuis les réglages Authentication.
