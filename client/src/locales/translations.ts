@@ -792,6 +792,8 @@ export const translations: Record<Locale, Record<string, string>> = {
     "La disponibilité, l’état, les équipements et les conditions applicables sont à confirmer avec le showroom avant tout déplacement.": "Confirm vehicle availability, condition, equipment and applicable terms with the showroom before travelling.",
     "Une visite au showroom, pour examiner le véhicule.": "Visit the showroom to inspect the vehicle.",
     "Les services publiés depuis l’administration s’afficheront dès qu’ils seront renseignés.": "Services published in the admin area will appear once they have been added.",
+    "Une question avant votre visite ?": "Questions before your visit?",
+    "Appelez le showroom ou écrivez directement à l’équipe.": "Call the showroom or message our team directly.",
   },
   "ar": {
     "Marrakech · Showroom automobile": "مراكش · معرض سيارات",
@@ -1583,5 +1585,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     "La disponibilité, l’état, les équipements et les conditions applicables sont à confirmer avec le showroom avant tout déplacement.": "يرجى تأكيد توفر السيارة وحالتها وتجهيزاتها والشروط المطبقة مع المعرض قبل التوجه إليه.",
     "Une visite au showroom, pour examiner le véhicule.": "زُر المعرض لمعاينة السيارة.",
     "Les services publiés depuis l’administration s’afficheront dès qu’ils seront renseignés.": "ستظهر الخدمات المنشورة في لوحة الإدارة بمجرد إضافتها.",
+    "Une question avant votre visite ?": "هل لديك سؤال قبل زيارتك؟",
+    "Appelez le showroom ou écrivez directement à l’équipe.": "اتصل بالمعرض أو راسل الفريق مباشرةً.",
   },
 };

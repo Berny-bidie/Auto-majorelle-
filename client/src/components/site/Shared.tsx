@@ -38,7 +38,8 @@ export function PrimaryLink({ href, children, className = "button button-dark" }
 
 export function ContactBand({ title = "Parlons de votre projet automobile.", text = "Notre équipe est à votre écoute pour vous orienter vers les bonnes informations." }: { title?: string; text?: string }) {
   const contact = useSiteSettings();
-  return <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow eyebrow-light">automajorelle · MARRAKECH</span><h2>{title}</h2><p>{text}</p></div><div className="contact-band-actions"><a className="button button-light" href={`tel:${contact.phoneRaw}`}>Nous appeler <ArrowRight size={16} /></a><WhatsAppLink className="button button-outline-light">WhatsApp</WhatsAppLink></div></div></section>;
+  const { locale } = useLanguage();
+  return <section className="contact-band"><div className="container contact-band-inner"><div><span className="eyebrow eyebrow-light">automajorelle · MARRAKECH</span><h2>{translateText(title, locale)}</h2><p>{translateText(text, locale)}</p></div><div className="contact-band-actions"><a className="button button-light" href={`tel:${contact.phoneRaw}`}>{translateText("Nous appeler", locale)} <ArrowRight size={16} /></a><WhatsAppLink className="button button-whatsapp">WhatsApp</WhatsAppLink></div></div></section>;
 }
 
 export function Notice({ children, kind = "info" }: { children: ReactNode; kind?: "info" | "success" | "error" }) {

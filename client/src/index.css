@@ -214,6 +214,8 @@ img { display: block; max-width: 100%; }
 .contact-band h2 { max-width: 630px; margin: 12px 0 8px; font-size: clamp(28px, 4vw, 46px); line-height: 1.08; letter-spacing: -.07em; }
 .contact-band p { max-width: 540px; margin: 0; color: rgba(255,255,255,.78); font-size: 12px; line-height: 1.7; }
 .contact-band-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.contact-band-actions .button-whatsapp { border-color: #25d366; background: #25d366; color: #fff; }
+.contact-band-actions .button-whatsapp:hover, .contact-band-actions .button-whatsapp:focus-visible { border-color: #128c7e; background: #128c7e; color: #fff; }
 
 .site-footer { background: #171719; color: #fff; }
 .footer-main { display: grid; grid-template-columns: 1.4fr .8fr .9fr 1.3fr; gap: 42px; padding-block: 62px 50px; }
