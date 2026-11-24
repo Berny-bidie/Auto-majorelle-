@@ -75,8 +75,8 @@ img { display: block; max-width: 100%; }
 .button-outline:hover { border-color: var(--ink); }
 .button-outline-light { background: transparent; border-color: rgba(255,255,255,.55); color: #fff; }
 .button-outline-light:hover { background: #fff; color: var(--ink); }
-.button-whatsapp { background: #fff; border-color: #dedddb; color: var(--ink); }
-.button-whatsapp:hover { border-color: #25d366; color: #13823a; }
+.button-whatsapp { background: #25d366; border-color: #25d366; color: #fff; }
+.button-whatsapp:hover { border-color: #1da851; background: #1da851; color: #fff; }
 .button-small { min-height: 40px; min-width: 128px; padding-inline: 16px; font-size: 9px; }
 .button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
 
@@ -230,7 +230,7 @@ img { display: block; max-width: 100%; }
 .footer-social a { display: inline-flex; align-items: center; gap: 4px; color: #d0d0d0; font-size: 9px; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 25px; padding-block: 18px; border-top: 1px solid rgba(255,255,255,.12); color: #888; font-size: 9px; }
 .footer-bottom a { color: #aaa; }
-.floating-whatsapp { position: fixed; z-index: 35; right: 20px; bottom: 20px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: #18b964; color: #fff; box-shadow: 0 8px 25px rgba(0,0,0,.22); }
+.floating-whatsapp { position: fixed; z-index: 80; right: 20px; bottom: 20px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%; background: #25d366; color: #fff; box-shadow: 0 8px 25px rgba(0,0,0,.22); }
 .floating-whatsapp::before { content: "◔"; font-size: 30px; line-height: 1; transform: rotate(-30deg); }
 .floating-whatsapp span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 .mobile-action-bar { display: none; }
@@ -511,7 +511,7 @@ img { display: block; max-width: 100%; }
   .mobile-action-bar a { min-height: 42px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; color: var(--ink); font-size: 8px; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
   .mobile-action-bar svg { width: 16px; height: 16px; flex: 0 0 16px; }
   .mobile-action-bar a:first-child { border: 1px solid var(--line); }
-  .mobile-action-bar .mobile-action-whatsapp { background: #18b964; color: #fff; border: 1px solid #18b964; }
+  .mobile-action-bar .mobile-action-whatsapp { background: #25d366; color: #fff; border: 1px solid #25d366; }
 }
 
 
@@ -602,7 +602,7 @@ html[dir="rtl"] .trust-item:last-child { border-left: 0; }
 .floating-whatsapp::before { content: none; }
 .floating-whatsapp svg { width: 25px; height: 25px; }
 
-.assistant-widget { position: fixed; z-index: 79; left: 22px; bottom: 20px; display: flex; flex-direction: column; align-items: flex-start; pointer-events: none; }
+.assistant-widget { position: fixed; z-index: 81; right: 20px; left: auto; bottom: 88px; display: flex; flex-direction: column; align-items: flex-end; pointer-events: none; }
 .assistant-widget > * { pointer-events: auto; }
 .assistant-panel { width: min(390px, calc(100vw - 28px)); margin-bottom: 10px; overflow: hidden; border: 1px solid #dedbd6; border-radius: 12px; background: #fff; box-shadow: 0 18px 55px rgba(20, 18, 17, .22); }
 .assistant-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 15px; background: var(--ink); color: white; }
@@ -616,7 +616,7 @@ html[dir="rtl"] .trust-item:last-child { border-left: 0; }
 .assistant-trigger span { font-size: 11px; font-weight: 750; }
 .assistant-trigger:hover { background: #a80f1c; }
 .assistant-trigger:focus-visible, .assistant-close:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
-html[dir="rtl"] .assistant-widget { left: 22px; right: auto; }
+html[dir="rtl"] .assistant-widget { right: 20px; left: auto; align-items: flex-end; }
 html[dir="rtl"] .footer-nav > div, html[dir="rtl"] .footer-contact { align-items: flex-start; }
 
 @media (max-width: 1080px) {
@@ -632,7 +632,7 @@ html[dir="rtl"] .footer-nav > div, html[dir="rtl"] .footer-contact { align-items
   .footer-brand { grid-column: 1 / -1; }
   .footer-nav { grid-column: 1 / -1; gap: 12px; }
   .footer-contact { grid-column: 1 / -1; }
-  .assistant-widget { left: 12px; bottom: 12px; }
+  .assistant-widget { right: 12px; left: auto; bottom: 82px; align-items: flex-end; }
   .assistant-panel { width: min(370px, calc(100vw - 24px)); }
   .assistant-chatbox { height: min(400px, 55vh) !important; }
 }
