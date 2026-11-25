@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useMemo, useState, type ReactNode } from "react";
 import { translations, type Locale } from "@/locales/translations";
 
 const LanguageContext = createContext<{ locale: Locale; setLocale: (locale: Locale) => void } | null>(null);
@@ -50,6 +50,17 @@ export function translateText(source: string, locale: Locale): string {
     return translated;
   }
   return source;
+}
+
+/**
+ * Translate visitor-authored or CMS text only when an approved translation is
+ * available. Callers must not display the source-language value as a fallback
+ * in English or Arabic; they should render localized guidance instead.
+ */
+export function translateDynamicText(source: string, locale: Locale): string | null {
+  if (locale === "fr") return source;
+  const translated = translateText(source, locale);
+  return translated === source ? null : translated;
 }
 
 function localizeTextNode(node: Node, locale: Locale) {
@@ -104,7 +115,7 @@ function localizeSubtree(root: Node, locale: Locale) {
 }
 
 function TranslationObserver({ locale }: { locale: Locale }) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     const html = document.documentElement;
     html.lang = locale;
     html.dir = locale === "ar" ? "rtl" : "ltr";

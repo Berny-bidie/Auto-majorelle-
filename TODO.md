@@ -122,3 +122,10 @@
 - [x] Alimenter le catalogue public avec trois véhicules de démonstration clairement identifiés : les filtres et les fiches peuvent maintenant être vérifiés sur des données Supabase publiées.
 - [x] Corriger le hero mobile : le contenu et la carte « Au showroom » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
 - [ ] Activer la protection contre les mots de passe compromis dans Supabase Auth depuis les réglages Authentication.
+
+
+## Localisation complète FR / EN / AR
+- [ ] Quand le visiteur choisit le français, l’anglais ou l’arabe, les pages publiques, composants partagés, contenus éditoriaux, libellés, erreurs, états de chargement, formulaires et métadonnées visibles suivent cette langue; l’arabe applique aussi `lang="ar"` et la direction RTL.
+- [ ] Aucun contenu éditorial CMS n’est affiché en anglais/arabe si son titre, résumé et corps ne disposent pas d’une version complète dans la langue choisie; aucun texte français de description véhicule non traduit n’est présenté dans les vues anglaises ou arabes.
+- [ ] Un contrôle automatique de couverture i18n est exécuté avec les tests et échoue si du texte source français détectable des pages/composants visiteurs n’a pas de traduction EN et AR.
+- [ ] Les traductions préservent le sens, les noms de marque, les coordonnées, les paramètres, les placeholders et les faits vérifiés; aucun taux, partenariat, disponibilité, garantie ou engagement non confirmé n’est ajouté.

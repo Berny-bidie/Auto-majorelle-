@@ -4,6 +4,7 @@ import PageMeta from "@/components/site/PageMeta";
 import { PageIntro } from "@/components/site/Shared";
 import HorizontalCarousel from "@/components/site/HorizontalCarousel";
 import VehicleCard from "@/components/site/VehicleCard";
+import { translateDynamicText, useLanguage } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc";
 import NotFound from "./NotFound";
 import { useParams } from "wouter";
@@ -61,16 +62,26 @@ export function InventoryPage() {
 
 export function VehicleDetailPage() {
   const { slug = "" } = useParams<{slug:string}>();
+  const { locale } = useLanguage();
   const query = trpc.automajorel.inventory.bySlug.useQuery({ slug });
   if (query.isLoading) return <><PageMeta title="Fiche véhicule — automajorelle" description="Chargement de la fiche véhicule." /><div className="container page-content"><div className="skeleton" /></div></>;
   if (query.error || !query.data) return <NotFound />;
   const car = query.data;
+  const description = translateDynamicText(car.description, locale);
+  const equipment = car.equipment.map(item => translateDynamicText(item, locale)).filter((item): item is string => item !== null);
+  const untranslatedEquipment = equipment.length !== car.equipment.length;
+  const warrantyNote = car.warrantyNote ? translateDynamicText(car.warrantyNote, locale) : null;
+  const localizedCopy = {
+    fr: { description: car.description, descriptionMissing: "La description n’est pas disponible.", equipmentMissing: "Certains détails d’équipement doivent être confirmés avec le showroom.", warrantyMissing: "Les conditions de garantie, si elles existent, sont à confirmer avec le showroom." },
+    en: { description: "A vehicle-specific description is not available in English yet. Contact the showroom for verified details.", descriptionMissing: "A vehicle-specific description is not available in English yet. Contact the showroom for verified details.", equipmentMissing: "Some equipment details are not available in English yet. Contact the showroom to confirm them.", warrantyMissing: "Any warranty terms must be confirmed with the showroom." },
+    ar: { description: "لا يتوفر وصف خاص بهذه السيارة باللغة العربية حاليًا. يُرجى التواصل مع المعرض للحصول على معلومات مؤكدة.", descriptionMissing: "لا يتوفر وصف خاص بهذه السيارة باللغة العربية حاليًا. يُرجى التواصل مع المعرض للحصول على معلومات مؤكدة.", equipmentMissing: "بعض تفاصيل التجهيزات غير متاحة بالعربية حاليًا. يُرجى تأكيدها مع المعرض.", warrantyMissing: "يجب تأكيد أي شروط ضمان مع المعرض." },
+  }[locale];
   const title = `${car.brand} ${car.model} ${car.year} — automajorelle`;
   return <>
     <PageMeta title={title} description={`${car.brand} ${car.model} ${car.year} à Marrakech. ${car.mileageKm.toLocaleString("fr-MA")} km, ${car.fuel}, ${car.transmission}. Prix ${car.priceDh.toLocaleString("fr-MA")} DH. Contactez automajorelle.`} type="article" image={car.images[0]} />
     <section className="page-intro"><div className="container"><div className="breadcrumb"><a href="/">Accueil</a> / <a href="/vehicules">Véhicules</a> / {car.brand} {car.model}</div><span className="eyebrow">FICHE VÉHICULE · MARRAKECH</span><h1>{car.brand} {car.model}</h1><p>Informations de cette annonce publiée par automajorelle.</p></div></section>
     <section className="page-content"><div className="container vehicle-detail-grid">
-      <div><Gallery images={car.images} alt={`${car.brand} ${car.model} à Marrakech`} /><div className="prose" style={{ marginTop: 26 }}><h2>À propos du véhicule</h2><p>{car.description}</p>{car.equipment.length>0&&<><h3>Équipements</h3><ul>{car.equipment.map(item=><li key={item}>{item}</li>)}</ul></>}{car.warrantyNote&&<p><strong>Garantie :</strong> {car.warrantyNote}</p>}</div></div>
+      <div><Gallery images={car.images} alt={`${car.brand} ${car.model} à Marrakech`} /><div className="prose" style={{ marginTop: 26 }}><h2>À propos du véhicule</h2><p>{description ?? localizedCopy.description}</p>{equipment.length>0&&<><h3>Équipements</h3><ul>{equipment.map(item=><li key={item}>{item}</li>)}</ul></>}{untranslatedEquipment&&<p>{localizedCopy.equipmentMissing}</p>}{car.warrantyNote&&<p><strong>Garantie :</strong> {warrantyNote ?? localizedCopy.warrantyMissing}</p>}</div></div>
       <aside className="vehicle-detail-summary"><span className="eyebrow">ANNONCE DISPONIBLE</span><h1>{car.brand} {car.model}</h1><div className="vehicle-detail-price">{car.priceDh.toLocaleString("fr-MA")} DH</div><div className="spec-grid">
         <div className="spec-cell"><small>Année</small><b>{car.year}</b></div><div className="spec-cell"><small>Kilométrage</small><b>{car.mileageKm.toLocaleString("fr-MA")} km</b></div><div className="spec-cell"><small>Motorisation</small><b>{car.fuel}</b></div><div className="spec-cell"><small>Transmission</small><b>{car.transmission}</b></div><div className="spec-cell"><small>Catégorie</small><b>{car.category}</b></div><div className="spec-cell"><small>Puissance</small><b>{car.powerCv ? `${car.powerCv} ch` : "À préciser"}</b></div>
       </div><div className="form-actions"><a className="button button-red" href={`/contact?vehicule=${encodeURIComponent(car.slug)}`}>Demander des informations</a><a className="button button-outline" href={`https://wa.me/212678880268?text=${encodeURIComponent(`Bonjour automajorelle, je souhaite des informations sur ${car.brand} ${car.model} (${car.year}).`)} `} target="_blank" rel="noreferrer">WhatsApp</a><a className="button button-dark" href={`/contact?vehicule=${encodeURIComponent(car.slug)}&rendezvous=1`}>Prendre rendez-vous</a></div><p className="field-help">Disponibilité, équipements et éventuelles conditions de garantie à confirmer avec le showroom.</p></aside>
