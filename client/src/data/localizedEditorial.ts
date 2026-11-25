@@ -9,6 +9,7 @@ export type EditorialBlock = {
 export type EditorialArticle = {
   slug: string;
   category: Record<Locale, string>;
+  imageUrl: string;
   title: Record<Locale, string>;
   excerpt: Record<Locale, string>;
   readingMinutes: number;
@@ -19,6 +20,7 @@ export const localizedEditorial: EditorialArticle[] = [
   {
     slug: "preparer-visite-vehicule-marrakech",
     category: { fr: "Guide d’achat", en: "Buying guide", ar: "دليل الشراء" },
+    imageUrl: "/assets/blog/car-inspection.webp",
     title: {
       fr: "Visiter un véhicule d’occasion : les bons réflexes avant de décider",
       en: "Viewing a used car: what to check before deciding",
@@ -56,6 +58,7 @@ export const localizedEditorial: EditorialArticle[] = [
   {
     slug: "financement-auto-questions-utiles",
     category: { fr: "Financement", en: "Financing", ar: "التمويل" },
+    imageUrl: "/assets/blog/financing-paperwork.webp",
     title: {
       fr: "Financement automobile : les questions à poser avant une simulation",
       en: "Car financing: questions to ask before using a calculator",
@@ -88,6 +91,7 @@ export const localizedEditorial: EditorialArticle[] = [
   {
     slug: "reprise-voiture-informations-a-preparer",
     category: { fr: "Reprise", en: "Trade-in", ar: "استبدال السيارة" },
+    imageUrl: "/assets/blog/car-key-handover.webp",
     title: {
       fr: "Demander une reprise : quelles informations préparer sur votre voiture ?",
       en: "Requesting a trade-in: what information should you prepare?",

@@ -15,41 +15,70 @@ function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+type CompiledTemplate = { pattern: RegExp; value: string; replacements: RegExp[]; specificity: number };
+
 const normalizedTranslations = {
   fr: new Map(Object.entries(translations.fr).map(([key, value]) => [normalize(key), value])),
   en: new Map(Object.entries(translations.en).map(([key, value]) => [normalize(key), value])),
   ar: new Map(Object.entries(translations.ar).map(([key, value]) => [normalize(key), value])),
 };
 
-export function translateText(source: string, locale: Locale): string {
-  if (locale === "fr") return source;
-  const clean = normalize(source);
-  const dictionary = translations[locale];
-  const direct = normalizedTranslations[locale].get(clean);
-  if (direct !== undefined) return direct;
-
-  for (const [key, value] of Object.entries(dictionary)) {
+function compileTemplates(locale: Exclude<Locale, "fr">): CompiledTemplate[] {
+  const templates: CompiledTemplate[] = [];
+  for (const [key, value] of Object.entries(translations[locale])) {
     const names: string[] = [];
     const pieces = normalize(key).split(/(\{\{\s*[^}]+?\s*\}\}|\{\s*[^}]+?\s*\})/g);
+    let literalCharacters = 0;
     const pattern = pieces.map(piece => {
-      const match = piece.match(/^\{\{?\s*([^}]+?)\s*\}?\}$/);
+      const match = piece.match(/^\{\{\s*([^}]+?)\s*\}\}$|^\{\s*([^}]+?)\s*\}$/);
       if (match) {
-        names.push(match[1]);
+        names.push(match[1] ?? match[2]);
         return "(.+?)";
       }
+      literalCharacters += piece.trim().length;
       return escapeRegExp(piece);
     }).join("");
-    if (!names.length) continue;
-    const match = clean.match(new RegExp(`^${pattern}$`));
+    if (names.length && literalCharacters > 0) {
+      templates.push({
+        pattern: new RegExp(`^${pattern}$`),
+        value,
+        replacements: names.map(name => new RegExp(`\\{\\{\\s*${escapeRegExp(name)}\\s*\\}\\}|\\{\\s*${escapeRegExp(name)}\\s*\\}`, "g")),
+        specificity: literalCharacters,
+      });
+    }
+  }
+  return templates.sort((left, right) => right.specificity - left.specificity);
+}
+
+const compiledTemplates = { en: compileTemplates("en"), ar: compileTemplates("ar") };
+const translationCache: Record<Locale, Map<string, string>> = { fr: new Map(), en: new Map(), ar: new Map() };
+const translationCacheLimit = 4_000;
+
+function cacheTranslation(source: string, locale: Locale, translated: string) {
+  const cache = translationCache[locale];
+  if (cache.size >= translationCacheLimit) cache.clear();
+  cache.set(source, translated);
+  return translated;
+}
+
+export function translateText(source: string, locale: Locale): string {
+  if (locale === "fr") return source;
+  const cached = translationCache[locale].get(source);
+  if (cached !== undefined) return cached;
+  const clean = normalize(source);
+  const direct = normalizedTranslations[locale].get(clean);
+  if (direct !== undefined) return cacheTranslation(source, locale, direct);
+
+  for (const template of compiledTemplates[locale]) {
+    const match = clean.match(template.pattern);
     if (!match) continue;
-    let translated = value;
-    names.forEach((name, index) => {
-      const token = new RegExp(`\\{\\{?\\s*${escapeRegExp(name)}\\s*\\}?`, "g");
+    let translated = template.value;
+    template.replacements.forEach((token, index) => {
       translated = translated.replace(token, match[index + 1] ?? "");
     });
-    return translated;
+    return cacheTranslation(source, locale, translated);
   }
-  return source;
+  return cacheTranslation(source, locale, source);
 }
 
 /**

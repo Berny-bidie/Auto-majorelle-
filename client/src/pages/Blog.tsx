@@ -1,9 +1,10 @@
 import { type ReactNode } from "react";
-import { ArrowLeft, ArrowRight, BookOpen, Clock3 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import PageMeta from "@/components/site/PageMeta";
 import { PageIntro, SectionHeading } from "@/components/site/Shared";
 import { getFallbackBlogArticle, getLocalizedFallbackBlogArticles } from "@/data/fallbackEditorialContent";
+import { getBlogFallbackImage } from "@/data/blogImages";
 import { localizedEditorial } from "@/data/localizedEditorial";
 import { translateText, useLanguage } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc";
@@ -47,20 +48,26 @@ export default function BlogPage() {
     <section className="page-content"><div className="container">
       <SectionHeading eyebrow={labels.editorial} title={labels.title} description={labels.intro} />
       <div className="article-grid">
-        {localizedEditorial.map(article => <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
-          <div className="article-card-image article-card-placeholder"><BookOpen size={28} /></div>
-          <div className="article-card-body"><div className="article-card-meta"><span>{article.category[locale]}</span><span><Clock3 size={12} /> {article.readingMinutes} {labels.minutes}</span></div><h2>{article.title[locale]}</h2><p>{article.excerpt[locale]}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
-        </Link>)}
+        {localizedEditorial.map(article => {
+          const image = getBlogFallbackImage(article.category.fr);
+          return <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
+            <img className="article-card-image" src={article.imageUrl} alt={image.alt[locale]} width={image.width} height={image.height} loading="lazy" decoding="async" />
+            <div className="article-card-body"><div className="article-card-meta"><span>{article.category[locale]}</span><span><Clock3 size={12} /> {article.readingMinutes} {labels.minutes}</span></div><h2>{article.title[locale]}</h2><p>{article.excerpt[locale]}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
+          </Link>;
+        })}
         {fallbackArticles.map(article => <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
-          <img className="article-card-image" src={article.imageUrl} alt={article.title} loading="lazy" />
+          <img className="article-card-image" src={article.imageUrl} alt={article.title} loading="lazy" decoding="async" />
           <div className="article-card-body"><div className="article-card-meta"><span>{article.category}</span><span><Clock3 size={12} /> {article.readingMinutes} {labels.minutes}</span></div><h2>{article.title}</h2><p>{article.excerpt}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
         </Link>)}
       </div>
       <section aria-label={labels.published} style={{ marginTop: 76 }}><h2 className="eyebrow">{labels.published}</h2>
-        {posts.isLoading ? <div className="skeleton" /> : posts.error ? <div className="notice notice-error">{locale === "ar" ? "تعذر تحميل المدونة حاليًا. يرجى المحاولة لاحقًا." : locale === "en" ? "The blog cannot be loaded right now. Please try again later." : "Le blog ne peut pas être chargé pour le moment. Réessayez plus tard."}</div> : publishedPosts.length ? <div className="article-grid">{publishedPosts.map(({ post, localized }) => <Link className="article-card" href={`/blog/${post.slug}`} key={post.id}>
-          {post.imageUrl ? <img className="article-card-image" src={post.imageUrl} alt={localized.title} loading="lazy" /> : <div className="article-card-image article-card-placeholder"><BookOpen size={28} /></div>}
-          <div className="article-card-body"><div className="article-card-meta"><span>{localized.category}</span><span><Clock3 size={12} /> {post.readingMinutes} {labels.minutes}</span></div><h2>{localized.title}</h2><p>{localized.excerpt}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
-        </Link>)}</div> : <p>{labels.empty}</p>}
+        {posts.isLoading ? <div className="skeleton" /> : posts.error ? <div className="notice notice-error">{locale === "ar" ? "تعذر تحميل المدونة حاليًا. يرجى المحاولة لاحقًا." : locale === "en" ? "The blog cannot be loaded right now. Please try again later." : "Le blog ne peut pas être chargé pour le moment. Réessayez plus tard."}</div> : publishedPosts.length ? <div className="article-grid">{publishedPosts.map(({ post, localized }) => {
+          const fallbackImage = post.imageUrl ? undefined : getBlogFallbackImage(post.category);
+          return <Link className="article-card" href={`/blog/${post.slug}`} key={post.id}>
+            <img className="article-card-image" src={post.imageUrl || fallbackImage!.src} alt={post.imageUrl ? localized.title : fallbackImage!.alt[locale]} width={fallbackImage?.width} height={fallbackImage?.height} loading="lazy" decoding="async" />
+            <div className="article-card-body"><div className="article-card-meta"><span>{localized.category}</span><span><Clock3 size={12} /> {post.readingMinutes} {labels.minutes}</span></div><h2>{localized.title}</h2><p>{localized.excerpt}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
+          </Link>;
+        })}</div> : <p>{labels.empty}</p>}
       </section>
     </div></section>
   </>;
@@ -73,11 +80,14 @@ export function BlogArticlePage() {
   const editorial = localizedEditorial.find(article => article.slug === slug);
   const fallback = getFallbackBlogArticle(slug, locale);
   const post = trpc.automajorel.blog.bySlug.useQuery({ slug }, { enabled: Boolean(slug) && !editorial && !fallback });
-  if (editorial) return <>
-    <PageMeta title={`${editorial.title[locale]} — Auto Majorelle`} description={editorial.excerpt[locale]} type="article" />
-    <section className="page-content"><div className="container article-body"><Link className="link-arrow" href="/blog"><ArrowLeft size={15} /> {labels.back}</Link><div style={{ height: 25 }} /><span className="eyebrow">{editorial.category[locale]}</span><h1>{editorial.title[locale]}</h1><p className="article-source-note">Auto Majorelle · {editorial.readingMinutes} {labels.minutesRead}</p><div className="prose">{editorial.blocks.map((block, index) => <section key={index}>{block.heading && <h2>{block.heading[locale]}</h2>}{block.text[locale] && <p>{block.text[locale]}</p>}{block.bullets && <ul>{block.bullets.map(item => <li key={item[locale]}>{item[locale]}</li>)}</ul>}</section>)}</div><div style={{ marginTop: 42 }}><Link className="button button-red" href="/contact">{labels.contact} <ArrowRight size={15} /></Link></div></div></section>
+  if (editorial) {
+    const image = getBlogFallbackImage(editorial.category.fr);
+    return <>
+    <PageMeta title={`${editorial.title[locale]} — Auto Majorelle`} description={editorial.excerpt[locale]} type="article" image={editorial.imageUrl} />
+    <section className="page-content"><div className="container article-body"><Link className="link-arrow" href="/blog"><ArrowLeft size={15} /> {labels.back}</Link><div style={{ height: 25 }} /><img className="article-cover" src={editorial.imageUrl} alt={image.alt[locale]} width={image.width} height={image.height} loading="eager" fetchPriority="high" decoding="async" /><span className="eyebrow">{editorial.category[locale]}</span><h1>{editorial.title[locale]}</h1><p className="article-source-note">Auto Majorelle · {editorial.readingMinutes} {labels.minutesRead}</p><div className="prose">{editorial.blocks.map((block, index) => <section key={index}>{block.heading && <h2>{block.heading[locale]}</h2>}{block.text[locale] && <p>{block.text[locale]}</p>}{block.bullets && <ul>{block.bullets.map(item => <li key={item[locale]}>{item[locale]}</li>)}</ul>}</section>)}</div><div style={{ marginTop: 42 }}><Link className="button button-red" href="/contact">{labels.contact} <ArrowRight size={15} /></Link></div></div></section>
     <section className="section section-surface"><div className="container"><SectionHeading eyebrow={labels.more} title={labels.moreTitle} description={labels.moreText} /><Link className="button button-dark" href="/vehicules">{labels.viewCars}</Link></div></section>
   </>;
+  }
   if (fallback) return <>
     <PageMeta title={`${fallback.title} — Auto Majorelle`} description={fallback.excerpt} type="article" image={fallback.imageUrl} />
     <section className="page-content"><div className="container article-body"><Link className="link-arrow" href="/blog"><ArrowLeft size={15} /> {labels.back}</Link><div style={{ height: 25 }} /><img className="article-cover" src={fallback.imageUrl} alt={fallback.title} /><span className="eyebrow">{fallback.category}</span><h1>{fallback.title}</h1><p className="article-source-note">Auto Majorelle · {fallback.readingMinutes} {labels.minutesRead}</p><Markdown body={fallback.body} /><div style={{ marginTop: 42 }}><Link className="button button-red" href="/contact">{labels.contact} <ArrowRight size={15} /></Link></div></div></section>
@@ -88,9 +98,11 @@ export function BlogArticlePage() {
   const article = post.data;
   const localizedArticle = localizePost(article, locale);
   if (!localizedArticle) return <NotFound />;
+  const fallbackImage = article.imageUrl ? undefined : getBlogFallbackImage(article.category);
+  const articleImage = article.imageUrl || fallbackImage!.src;
   return <>
-    <PageMeta title={`${localizedArticle.title} — Auto Majorelle`} description={localizedArticle.excerpt} type="article" image={article.imageUrl || undefined} />
-    <section className="page-content"><div className="container article-body"><Link className="link-arrow" href="/blog"><ArrowLeft size={15} /> {labels.back}</Link><div style={{ height: 25 }} />{article.imageUrl && <img className="article-cover" src={article.imageUrl} alt={localizedArticle.title} />}<span className="eyebrow">{localizedArticle.category}</span><h1>{localizedArticle.title}</h1><p className="article-source-note">{formatDate(article.publishedAt, locale)} · {article.readingMinutes} {labels.minutesRead}</p><Markdown body={localizedArticle.body} /><div style={{ marginTop: 42 }}><Link className="button button-red" href="/contact">{labels.contact} <ArrowRight size={15} /></Link></div></div></section>
+    <PageMeta title={`${localizedArticle.title} — Auto Majorelle`} description={localizedArticle.excerpt} type="article" image={articleImage} />
+    <section className="page-content"><div className="container article-body"><Link className="link-arrow" href="/blog"><ArrowLeft size={15} /> {labels.back}</Link><div style={{ height: 25 }} /><img className="article-cover" src={articleImage} alt={article.imageUrl ? localizedArticle.title : fallbackImage!.alt[locale]} width={fallbackImage?.width} height={fallbackImage?.height} loading="eager" fetchPriority="high" decoding="async" /><span className="eyebrow">{localizedArticle.category}</span><h1>{localizedArticle.title}</h1><p className="article-source-note">{formatDate(article.publishedAt, locale)} · {article.readingMinutes} {labels.minutesRead}</p><Markdown body={localizedArticle.body} /><div style={{ marginTop: 42 }}><Link className="button button-red" href="/contact">{labels.contact} <ArrowRight size={15} /></Link></div></div></section>
     <section className="section section-surface"><div className="container"><SectionHeading eyebrow={labels.more} title={labels.moreTitle} description={labels.moreText} /><Link className="button button-dark" href="/vehicules">{labels.viewCars}</Link></div></section>
   </>;
 }

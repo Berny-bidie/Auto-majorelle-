@@ -129,3 +129,9 @@
 - [ ] Aucun contenu éditorial CMS n’est affiché en anglais/arabe si son titre, résumé et corps ne disposent pas d’une version complète dans la langue choisie; aucun texte français de description véhicule non traduit n’est présenté dans les vues anglaises ou arabes.
 - [ ] Un contrôle automatique de couverture i18n est exécuté avec les tests et échoue si du texte source français détectable des pages/composants visiteurs n’a pas de traduction EN et AR.
 - [ ] Les traductions préservent le sens, les noms de marque, les coordonnées, les paramètres, les placeholders et les faits vérifiés; aucun taux, partenariat, disponibilité, garantie ou engagement non confirmé n’est ajouté.
+
+
+## Photos du blog et rapidité de localisation
+- [x] Ajouter aux articles de blog qui en sont dépourvus des photos pertinentes récupérées en ligne, sans en générer; éviter les images premium ou filigranées et documenter les sources, les auteurs et les licences.
+- [x] Afficher une image de remplacement pertinente pour les articles CMS publiés sans image, avec texte alternatif et chargement adapté.
+- [x] Accélérer l’affichage de la localisation FR/EN/AR en évitant de recompiler les motifs de traduction pour chaque nœud texte et en réutilisant les résultats répétitifs, tout en préservant les placeholders, le français source et le RTL arabe.
