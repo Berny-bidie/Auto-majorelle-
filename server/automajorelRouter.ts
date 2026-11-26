@@ -5,7 +5,7 @@ import { SITE_CONTACT, normalizeBrandName } from "../shared/siteData";
 import { supabasePublishableKey, supabaseUrl } from "./supabase";
 import type { TrpcContext } from "./_core/context";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { isPublicInventorySlug } from "./publicInventory";
+import { isDemoInventorySlug } from "./publicInventory";
 
 const DEFAULT_SETTINGS: Record<string, string> = {
   businessName: SITE_CONTACT.name,
@@ -43,7 +43,7 @@ type PartnerRow = Database["public"]["Tables"]["financing_partners"]["Row"];
 type PostRow = Database["public"]["Tables"]["blog_posts"]["Row"];
 
 function mapVehicle(row: VehicleRow) {
-  return { id: row.id, slug: row.slug, brand: row.brands?.name ?? "", model: row.model, year: row.year, priceDh: row.price_dh, mileageKm: row.mileage_km, fuel: row.fuel, transmission: row.transmission, powerCv: row.power_cv, category: row.category, description: row.description, equipment: stringArray(row.equipment), images: stringArray(row.images), availability: row.availability as "available" | "reserved" | "sold", published: row.published ? 1 : 0, featured: row.featured ? 1 : 0, warrantyNote: row.warranty_note, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };
+  return { id: row.id, slug: row.slug, isDemo: isDemoInventorySlug(row.slug), brand: row.brands?.name ?? "", model: row.model, year: row.year, priceDh: row.price_dh, mileageKm: row.mileage_km, fuel: row.fuel, transmission: row.transmission, powerCv: row.power_cv, category: row.category, description: row.description, equipment: stringArray(row.equipment), images: stringArray(row.images), availability: row.availability as "available" | "reserved" | "sold", published: row.published ? 1 : 0, featured: row.featured ? 1 : 0, warrantyNote: row.warranty_note, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };
 }
 function mapPost(row: PostRow) {
   return { id: row.id, slug: row.slug, title: row.title, category: row.category, excerpt: row.excerpt, body: row.body, imageUrl: row.image_url, author: row.author, readingMinutes: row.reading_minutes, sourceDate: row.source_date, status: row.status as "draft" | "published", reviewNotes: row.review_notes, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };
@@ -169,12 +169,12 @@ export const automajorelRouter = router({
       const { data, error } = await query;
       if (error) failDb(error);
       const search = filters.search?.toLocaleLowerCase("fr");
-      return ((data ?? []) as unknown as VehicleRow[]).map(mapVehicle).filter(row => isPublicInventorySlug(row.slug) && (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === undefined || row.year >= filters.yearFrom) && (filters.yearTo === undefined || row.year <= filters.yearTo) && (filters.budgetMax === undefined || row.priceDh <= filters.budgetMax) && (filters.mileageMax === undefined || row.mileageKm <= filters.mileageMax));
+      return ((data ?? []) as unknown as VehicleRow[]).map(mapVehicle).filter(row => (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === undefined || row.year >= filters.yearFrom) && (filters.yearTo === undefined || row.year <= filters.yearTo) && (filters.budgetMax === undefined || row.priceDh <= filters.budgetMax) && (filters.mileageMax === undefined || row.mileageKm <= filters.mileageMax));
     }),
     bySlug: publicProcedure.input(z.object({ slug: z.string().min(1).max(140) })).query(async ({ ctx, input }) => {
       const { data, error } = await ctx.supabase.from("vehicles").select(vehicleSelect).eq("slug", input.slug).eq("published", true).eq("availability", "available").maybeSingle();
       if (error) failDb(error);
-      return data && isPublicInventorySlug(data.slug) ? mapVehicle(data as unknown as VehicleRow) : null;
+      return data ? mapVehicle(data as unknown as VehicleRow) : null;
     }),
   }),
   blog: router({

@@ -1,6 +1,6 @@
 const demoSlugPattern = /^(?:test|demo)-/i;
 
-/** Test and demo fixtures must never appear in public inventory or detail responses. */
-export function isPublicInventorySlug(slug: string): boolean {
-  return !demoSlugPattern.test(slug);
+/** Identify seeded examples so public pages can label them clearly and avoid sales claims. */
+export function isDemoInventorySlug(slug: string): boolean {
+  return demoSlugPattern.test(slug);
 }

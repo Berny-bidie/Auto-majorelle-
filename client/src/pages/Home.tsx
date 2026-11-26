@@ -39,7 +39,7 @@ export default function Home() {
   }, []);
 
   return <>
-    <PageMeta title="automajorelle — Concession automobile à Marrakech" description="Consultez le stock publié par automajorelle à Marrakech, les informations du showroom et les moyens de contact." image="https://files.manuscdn.com/user_upload_by_module/session_file/310519663936004290/oUDvfFqktvDNXfey.jpg" />
+    <PageMeta title="automajorelle — Concession automobile à Marrakech" description="Consultez le catalogue automajorelle à Marrakech, les informations du showroom et les moyens de contact." image="https://files.manuscdn.com/user_upload_by_module/session_file/310519663936004290/oUDvfFqktvDNXfey.jpg" />
     <main className="home-page">
       <section className="hero">
         <video ref={heroVideoRef} className="hero-video" autoPlay muted loop playsInline controls={false} disablePictureInPicture preload="metadata" poster={SOURCE_MEDIA.facade} aria-hidden="true" tabIndex={-1}>
@@ -49,7 +49,7 @@ export default function Home() {
           <div className="hero-copy">
             <span className="eyebrow eyebrow-light">SHOWROOM automajorelle · SIDI GHANEM</span>
             <h1>À Marrakech,<br />la voiture se choisit <em>en vrai.</em></h1>
-            <p>Parcourez les annonces publiées, puis contactez l’équipe pour confirmer la disponibilité et préparer votre visite.</p>
+            <p>Parcourez le catalogue. Les fiches marquées DÉMO sont des exemples non disponibles à la vente.</p>
             <div className="hero-actions"><Link className="button button-red" href="/vehicules">Voir les véhicules <ArrowRight size={16} /></Link><Link className="button button-outline-light" href="/contact">Préparer ma visite</Link></div>
           </div>
           <aside className="hero-proof-card"><span className="eyebrow eyebrow-light">AU SHOWROOM</span><strong>Sidi Ghanem · Marrakech</strong><p>Vente · reprise · financement</p><span className="hero-proof-line" /><small>{contact.address}</small><Link href="/contact">Nous trouver <ArrowRight size={13} /></Link></aside>
@@ -58,7 +58,7 @@ export default function Home() {
 
       <section className="section section-surface home-stock-section" aria-labelledby="home-stock-title">
         <div className="container">
-          <div className="section-topline"><SectionHeading eyebrow="STOCK PUBLIÉ" title="Les véhicules à découvrir" description="Prix, année et kilométrage sont affichés sur chaque annonce disponible." /><Link className="link-arrow" href="/vehicules">Tout le catalogue <ArrowRight size={16} /></Link></div>
+          <div className="section-topline"><SectionHeading eyebrow="CATALOGUE & DÉMOS" title="Les véhicules à découvrir" description="Les fiches marquées DÉMO sont des exemples et ne sont pas disponibles à la vente." /><Link className="link-arrow" href="/vehicules">Tout le catalogue <ArrowRight size={16} /></Link></div>
           {inventory.isLoading ? <div className="skeleton" aria-label="Chargement du stock" /> : inventory.error ? <div className="inventory-fallback"><h3>Le stock ne s’affiche pas pour le moment.</h3><p>Appelez l’équipe pour confirmer les véhicules actuellement disponibles.</p><a className="button button-dark button-small" href={`tel:${contact.phoneRaw}`}>Appeler le showroom</a></div> : vehicles.length ? <div className="home-featured-grid">{vehicles.slice(0, 3).map(vehicle => <VehicleCard vehicle={vehicle} key={vehicle.id} />)}</div> : <div className="inventory-fallback"><h3>Demandez les disponibilités du moment.</h3><p>Le catalogue en ligne ne contient pas d’annonce publiée. Contactez le showroom avant votre visite.</p><div className="inventory-actions"><a className="button button-dark button-small" href={`tel:${contact.phoneRaw}`}>Appeler le showroom</a><Link className="button button-outline button-small" href="/contact">Nous contacter</Link></div></div>}
         </div>
       </section>
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {stockBrands.length > 0 && <section className="section section-brands home-brands-section"><div className="container"><div className="section-topline"><SectionHeading eyebrow="MARQUES PUBLIÉES" title="Parcourir par marque" description="Marques présentes dans les annonces actuellement publiées." /><Link className="link-arrow" href="/vehicules">Voir le stock <ArrowRight size={15} /></Link></div><div className="home-brand-list">{stockBrands.slice(0, 8).map(brand => <span key={brand.id}>{brand.name}</span>)}</div></div></section>}
+      {stockBrands.length > 0 && <section className="section section-brands home-brands-section"><div className="container"><div className="section-topline"><SectionHeading eyebrow="MARQUES DU CATALOGUE" title="Parcourir par marque" description="Marques présentes dans les fiches du catalogue, y compris les exemples clairement marqués DÉMO." /><Link className="link-arrow" href="/vehicules">Voir le stock <ArrowRight size={15} /></Link></div><div className="home-brand-list">{stockBrands.slice(0, 8).map(brand => <span key={brand.id}>{brand.name}</span>)}</div></div></section>}
 
       <ContactBand title="Une question avant votre visite ?" text="Appelez le showroom ou écrivez directement à l’équipe." />
     </main>
