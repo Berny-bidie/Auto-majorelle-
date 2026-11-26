@@ -135,3 +135,12 @@
 - [x] Ajouter aux articles de blog qui en sont dépourvus des photos pertinentes récupérées en ligne, sans en générer; éviter les images premium ou filigranées et documenter les sources, les auteurs et les licences.
 - [x] Afficher une image de remplacement pertinente pour les articles CMS publiés sans image, avec texte alternatif et chargement adapté.
 - [x] Accélérer l’affichage de la localisation FR/EN/AR en évitant de recompiler les motifs de traduction pour chaque nœud texte et en réutilisant les résultats répétitifs, tout en préservant les placeholders, le français source et le RTL arabe.
+
+
+## Corrections frontend après audit du 25 novembre 2026
+- [x] Priorité catalogue : distinguer clairement l’échec API, les filtres sans résultat et le stock réellement vide; ne pas afficher « 0 véhicule publié » lorsque la requête est en erreur; fournir un contact direct pour vérifier le stock.
+- [x] Accueil : remplacer les sections redondantes par un parcours plus court, centré sur les véhicules effectivement publiés, le showroom, les coordonnées/localisation et les avis Google vérifiables.
+- [x] Véhicules mis en avant : afficher uniquement les annonces chargées depuis le catalogue; ne pas présenter les photos locales d’exemple comme des annonces à vendre.
+- [x] Médias : ajouter des alternatives textuelles descriptives aux photos de showroom mises en avant; utiliser le chargement différé pour les images non prioritaires.
+- [ ] Photos d’équipe : intégrer uniquement des photos réelles dont l’identité et l’autorisation de publication sont vérifiables; attendre les fichiers fournis par Auto Majorelle, car aucune photo d’équipe authentifiable n’a été trouvée lors de cette passe.
+- [x] Langues : fournir les nouvelles chaînes de l’accueil et du catalogue en français, anglais et arabe.
