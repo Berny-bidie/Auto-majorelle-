@@ -1,16 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "buildCommand": "corepack pnpm install --frozen-lockfile && corepack pnpm build && corepack pnpm exec esbuild server/apiHandler.ts --bundle --platform=node --packages=external --format=esm --outfile=api/trpc/[[...path]].js",
+  "buildCommand": "corepack pnpm install --frozen-lockfile && corepack pnpm build && corepack pnpm exec esbuild api/handler.ts --bundle --platform=node --format=esm --outfile=api/[[...path]].js",
   "outputDirectory": "dist/public",
   "rewrites": [
-    {
-      "source": "/healthz",
-      "destination": "/api/healthz"
-    },
-    {
-      "source": "/((?!api(?:/|$)).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/healthz", "destination": "/api/healthz" },
+    { "source": "/((?!api(?:/|$)).*)", "destination": "/index.html" }
   ]
 }

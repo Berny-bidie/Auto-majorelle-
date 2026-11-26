@@ -5,7 +5,6 @@ import { SITE_CONTACT, normalizeBrandName } from "../shared/siteData";
 import { supabasePublishableKey, supabaseUrl } from "./supabase";
 import type { TrpcContext } from "./_core/context";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { isDemoInventorySlug } from "./publicInventory";
 
 const DEFAULT_SETTINGS: Record<string, string> = {
   businessName: SITE_CONTACT.name,
@@ -43,7 +42,7 @@ type PartnerRow = Database["public"]["Tables"]["financing_partners"]["Row"];
 type PostRow = Database["public"]["Tables"]["blog_posts"]["Row"];
 
 function mapVehicle(row: VehicleRow) {
-  return { id: row.id, slug: row.slug, isDemo: isDemoInventorySlug(row.slug), brand: row.brands?.name ?? "", model: row.model, year: row.year, priceDh: row.price_dh, mileageKm: row.mileage_km, fuel: row.fuel, transmission: row.transmission, powerCv: row.power_cv, category: row.category, description: row.description, equipment: stringArray(row.equipment), images: stringArray(row.images), availability: row.availability as "available" | "reserved" | "sold", published: row.published ? 1 : 0, featured: row.featured ? 1 : 0, warrantyNote: row.warranty_note, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };
+  return { id: row.id, slug: row.slug, brand: row.brands?.name ?? "", model: row.model, year: row.year, priceDh: row.price_dh, mileageKm: row.mileage_km, fuel: row.fuel, transmission: row.transmission, powerCv: row.power_cv, category: row.category, description: row.description, equipment: stringArray(row.equipment), images: stringArray(row.images), availability: row.availability as "available" | "reserved" | "sold", published: row.published ? 1 : 0, featured: row.featured ? 1 : 0, warrantyNote: row.warranty_note, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };
 }
 function mapPost(row: PostRow) {
   return { id: row.id, slug: row.slug, title: row.title, category: row.category, excerpt: row.excerpt, body: row.body, imageUrl: row.image_url, author: row.author, readingMinutes: row.reading_minutes, sourceDate: row.source_date, status: row.status as "draft" | "published", reviewNotes: row.review_notes, publishedAt: row.published_at ? new Date(row.published_at) : null, createdAt: new Date(row.created_at), updatedAt: new Date(row.updated_at) };

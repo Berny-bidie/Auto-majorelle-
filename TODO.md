@@ -119,7 +119,7 @@
 - [x] Vérifier sur mobile le panneau de filtres véhicules : recherche, sélecteurs, années, kilométrage, bouton Appliquer et état vide affichés correctement.
 - [x] Enrichir l’accueil avec des repères d’avis clients issus de la fiche Google configurée et une progression financement en trois étapes, tout en conservant la direction Auto Majorelle.
 - [x] Vérifier le raccord frontend/backend : routes publiques en HTTP 200, catalogue et réglages lus depuis Supabase, migrations appliquées et build validé.
-- [x] Conserver les véhicules de démonstration pour les vérifications administratives, mais ne jamais les présenter comme du stock réel aux visiteurs.
+- [x] Alimenter le catalogue public avec trois véhicules de démonstration clairement identifiés : les filtres et les fiches peuvent maintenant être vérifiés sur des données Supabase publiées.
 - [x] Corriger le hero mobile : le contenu et la carte « Au showroom » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
 - [ ] Activer la protection contre les mots de passe compromis dans Supabase Auth depuis les réglages Authentication.
 
@@ -135,14 +135,3 @@
 - [x] Ajouter aux articles de blog qui en sont dépourvus des photos pertinentes récupérées en ligne, sans en générer; éviter les images premium ou filigranées et documenter les sources, les auteurs et les licences.
 - [x] Afficher une image de remplacement pertinente pour les articles CMS publiés sans image, avec texte alternatif et chargement adapté.
 - [x] Accélérer l’affichage de la localisation FR/EN/AR en évitant de recompiler les motifs de traduction pour chaque nœud texte et en réutilisant les résultats répétitifs, tout en préservant les placeholders, le français source et le RTL arabe.
-
-
-## Corrections frontend après audit du 25 novembre 2026
-- [x] Rétablir la route tRPC de production au chemin catch-all imbriqué reconnu par Vercel; vérifier en HTTP 200 l’inventaire, les marques et les partenaires de financement.
-- [x] Réafficher les fiches de démonstration demandées par Auto Majorelle uniquement avec un avertissement visible « Démo — non disponible à la vente », prix signalés comme exemples et sans CTA de vente/rendez-vous sur les fiches; avertissements disponibles en FR/EN/AR. Vérifié sur automajorel.vercel.app : les trois fiches détail et leurs routes répondent en HTTP 200, `isDemo` est vrai sur chaque fiche, et le bundle public contient les avertissements traduits.
-- [x] Priorité catalogue : distinguer clairement l’échec API, les filtres sans résultat et le stock réellement vide; ne pas afficher « 0 véhicule publié » lorsque la requête est en erreur; fournir un contact direct pour vérifier le stock.
-- [x] Accueil : remplacer les sections redondantes par un parcours plus court, centré sur les véhicules effectivement publiés, le showroom, les coordonnées/localisation et les avis Google vérifiables.
-- [x] Véhicules mis en avant : afficher uniquement les annonces chargées depuis le catalogue; ne pas présenter les photos locales d’exemple comme des annonces à vendre.
-- [x] Médias : ajouter des alternatives textuelles descriptives aux photos de showroom mises en avant; utiliser le chargement différé pour les images non prioritaires.
-- [ ] Photos d’équipe : intégrer uniquement des photos réelles dont l’identité et l’autorisation de publication sont vérifiables; attendre les fichiers fournis par Auto Majorelle, car aucune photo d’équipe authentifiable n’a été trouvée lors de cette passe.
-- [x] Langues : fournir les nouvelles chaînes de l’accueil et du catalogue en français, anglais et arabe.

@@ -1,8 +1,8 @@
 import express from "express";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { publicPlatformScript } from "./_core/publicConfig";
-import { appRouter } from "./routers";
-import { createContext } from "./_core/context";
+import { publicPlatformScript } from "../server/_core/publicConfig";
+import { appRouter } from "../server/routers";
+import { createContext } from "../server/_core/context";
 
 const app = express();
 app.set("trust proxy", 1);
