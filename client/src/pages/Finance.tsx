@@ -5,15 +5,6 @@ import PageMeta from "@/components/site/PageMeta";
 import { Notice, PageIntro, Reveal } from "@/components/site/Shared";
 import { trpc } from "@/lib/trpc";
 
-const archivedPartnerLogos = [
-  { name: "Bank Al Yousr", logo: "/assets/partners/bank-al-yousr.png" },
-  { name: "SOFAC", logo: "/assets/partners/sofac.png" },
-  { name: "Wafasalaf", logo: "/assets/partners/wafasalaf.png" },
-  { name: "Salafin", logo: "/assets/partners/salafin.png" },
-  { name: "Maghrebail", logo: "/assets/partners/maghrebail.png" },
-  { name: "Vivalis Salaf", logo: "/assets/partners/vivalis.png" },
-];
-
 export default function FinancePage() {
   const settings = trpc.automajorel.site.settings.useQuery();
   const partners = trpc.automajorel.site.financingPartners.useQuery();
@@ -67,7 +58,7 @@ export default function FinancePage() {
         {partners.error && <div className="notice notice-error">Impossible de charger les conditions de financement confirmées.</div>}
       </div>
       <div className="notice notice-info"><Info size={16} />Le simulateur applique une formule de mensualité constante et n’intègre pas frais, assurance, arrondis ou critères d’acceptation. Seule une proposition écrite de l’organisme fait foi.</div>
-      <div className="admin-card financing-partners" style={{ marginTop: 30 }}><h2>{partners.data?.length ? "Partenaires confirmés" : "Partenaires financiers à confirmer"}</h2>{partners.isLoading ? <p>Chargement…</p> : partners.data?.length ? <><div className="partner-grid">{partners.data.map(partner => <article className="partner-card" key={partner.id}>{partner.logoUrl ? <img src={partner.logoUrl} alt={partner.name} loading="lazy" /> : <strong>{partner.name}</strong>}<span className="partner-state">Confirmé</span></article>)}</div><ul className="financing-terms-list">{partners.data.map(partner => <li key={partner.id}><strong>{partner.name}</strong>{partner.termsSummary ? ` — ${partner.termsSummary}` : " — Conditions confirmées auprès de l’organisme."}{partner.annualRate !== null ? ` Taux indiqué : ${partner.annualRate}%` : " Aucun taux publié."}</li>)}</ul></> : <><p className="partner-intro">Les organismes ci-dessous sont présentés à titre indicatif. automajorelle n’affiche un partenariat, un taux ou une condition comme actif qu’après confirmation.</p><div className="partner-grid partner-grid-archived">{archivedPartnerLogos.map(partner => <article className="partner-card partner-card-archived" key={partner.name}><img src={partner.logo} alt={partner.name} loading="lazy" /><span className="partner-state">À confirmer</span></article>)}</div><p className="partner-disclaimer">Aucune offre de financement ne découle de l’affichage de ces logos.</p></>}</div>
+      <div className="admin-card financing-partners" style={{ marginTop: 30 }}><h2>{partners.data?.length ? "Partenaires confirmés" : "Partenaires financiers confirmés"}</h2>{partners.isLoading ? <p>Chargement…</p> : partners.error ? <p className="notice notice-error">Impossible de charger les partenaires confirmés.</p> : partners.data?.length ? <><div className="partner-grid">{partners.data.map(partner => <article className="partner-card" key={partner.id}>{partner.logoUrl ? <img src={partner.logoUrl} alt={partner.name} loading="lazy" /> : <strong>{partner.name}</strong>}<span className="partner-state">Confirmé</span></article>)}</div><ul className="financing-terms-list">{partners.data.map(partner => <li key={partner.id}><strong>{partner.name}</strong>{partner.termsSummary ? ` — ${partner.termsSummary}` : " — Conditions confirmées auprès de l’organisme."}{partner.annualRate !== null ? ` Taux indiqué : ${partner.annualRate}%` : " Aucun taux publié."}</li>)}</ul></> : <p className="partner-intro">Aucun partenaire de financement confirmé n’est publié pour le moment. Les conditions sont à vérifier directement avec l’équipe et l’organisme concerné.</p>}</div>
       </div></Reveal>
       <Reveal delay={100}><div className="form-card"><span className="eyebrow">PARLONS DE VOTRE PROJET</span><h2>Demander une étude</h2><p>Votre demande sera enregistrée dans la réception privée automajorelle. Les conditions restent à confirmer avec l’organisme financeur.</p>
         {sent && <Notice kind="success">Votre demande a été enregistrée. L’équipe pourra vous recontacter.</Notice>}{error && <Notice kind="error">{error}</Notice>}

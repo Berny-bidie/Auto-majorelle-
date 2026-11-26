@@ -1,4 +1,5 @@
 import { ArrowRight, Fuel, Gauge, Settings2 } from "lucide-react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { formatDh, formatKm } from "@/lib/site";
 
@@ -17,9 +18,10 @@ type CardVehicle = {
 
 export default function VehicleCard({ vehicle }: { vehicle: CardVehicle }) {
   const image = vehicle.images[0];
+  const [imageFailed, setImageFailed] = useState(false);
   return <article className="vehicle-card">
     <Link href={`/vehicules/${vehicle.slug}`} className="vehicle-card-image" aria-label={`Voir ${vehicle.brand} ${vehicle.model}`}>
-      {image ? <img src={image} alt={`${vehicle.brand} ${vehicle.model} — véhicule disponible à Marrakech`} loading="lazy" /> : <div className="vehicle-image-empty">Photo à ajouter</div>}
+      {image && !imageFailed ? <img src={image} alt={`${vehicle.brand} ${vehicle.model} — véhicule disponible à Marrakech`} loading="lazy" onError={() => setImageFailed(true)} /> : <div className="vehicle-image-empty">Photo indisponible<br /><small>Visuels à confirmer avec le showroom.</small></div>}
       {vehicle.featured ? <span className="vehicle-badge">Sélection</span> : null}
     </Link>
     <div className="vehicle-card-body">
