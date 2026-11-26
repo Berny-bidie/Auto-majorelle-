@@ -89,6 +89,12 @@ var adminProcedure = t.procedure.use(t.middleware(({ ctx, next }) => {
   return next({ ctx: { ...ctx, user: ctx.user } });
 }));
 
+// server/publicInventory.ts
+var demoSlugPattern = /^(?:test|demo)-/i;
+function isPublicInventorySlug(slug) {
+  return !demoSlugPattern.test(slug);
+}
+
 // server/automajorelRouter.ts
 var DEFAULT_SETTINGS = {
   businessName: SITE_CONTACT.name,
@@ -248,12 +254,12 @@ var automajorelRouter = router({
       const { data, error } = await query;
       if (error) failDb(error);
       const search = filters.search?.toLocaleLowerCase("fr");
-      return (data ?? []).map(mapVehicle).filter((row) => (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === void 0 || row.year >= filters.yearFrom) && (filters.yearTo === void 0 || row.year <= filters.yearTo) && (filters.budgetMax === void 0 || row.priceDh <= filters.budgetMax) && (filters.mileageMax === void 0 || row.mileageKm <= filters.mileageMax));
+      return (data ?? []).map(mapVehicle).filter((row) => isPublicInventorySlug(row.slug) && (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === void 0 || row.year >= filters.yearFrom) && (filters.yearTo === void 0 || row.year <= filters.yearTo) && (filters.budgetMax === void 0 || row.priceDh <= filters.budgetMax) && (filters.mileageMax === void 0 || row.mileageKm <= filters.mileageMax));
     }),
     bySlug: publicProcedure.input(z.object({ slug: z.string().min(1).max(140) })).query(async ({ ctx, input }) => {
       const { data, error } = await ctx.supabase.from("vehicles").select(vehicleSelect).eq("slug", input.slug).eq("published", true).eq("availability", "available").maybeSingle();
       if (error) failDb(error);
-      return data ? mapVehicle(data) : null;
+      return data && isPublicInventorySlug(data.slug) ? mapVehicle(data) : null;
     })
   }),
   blog: router({

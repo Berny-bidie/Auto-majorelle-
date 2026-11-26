@@ -119,7 +119,7 @@
 - [x] Vérifier sur mobile le panneau de filtres véhicules : recherche, sélecteurs, années, kilométrage, bouton Appliquer et état vide affichés correctement.
 - [x] Enrichir l’accueil avec des repères d’avis clients issus de la fiche Google configurée et une progression financement en trois étapes, tout en conservant la direction Auto Majorelle.
 - [x] Vérifier le raccord frontend/backend : routes publiques en HTTP 200, catalogue et réglages lus depuis Supabase, migrations appliquées et build validé.
-- [x] Alimenter le catalogue public avec trois véhicules de démonstration clairement identifiés : les filtres et les fiches peuvent maintenant être vérifiés sur des données Supabase publiées.
+- [x] Conserver les véhicules de démonstration pour les vérifications administratives, mais ne jamais les présenter comme du stock réel aux visiteurs.
 - [x] Corriger le hero mobile : le contenu et la carte « Au showroom » sont maintenant empilés dans le flux, sans compression du titre ni chevauchement des boutons.
 - [ ] Activer la protection contre les mots de passe compromis dans Supabase Auth depuis les réglages Authentication.
 
@@ -138,6 +138,8 @@
 
 
 ## Corrections frontend après audit du 25 novembre 2026
+- [x] Rétablir la route tRPC de production au chemin catch-all imbriqué reconnu par Vercel; vérifier en HTTP 200 l’inventaire, les marques et les partenaires de financement.
+- [ ] Masquer côté serveur les lignes `test-*` et `demo-*` dans le catalogue public et les fiches détail; montrer l’état vide tant qu’aucune vraie annonce n’est publiée et disponible.
 - [x] Priorité catalogue : distinguer clairement l’échec API, les filtres sans résultat et le stock réellement vide; ne pas afficher « 0 véhicule publié » lorsque la requête est en erreur; fournir un contact direct pour vérifier le stock.
 - [x] Accueil : remplacer les sections redondantes par un parcours plus court, centré sur les véhicules effectivement publiés, le showroom, les coordonnées/localisation et les avis Google vérifiables.
 - [x] Véhicules mis en avant : afficher uniquement les annonces chargées depuis le catalogue; ne pas présenter les photos locales d’exemple comme des annonces à vendre.

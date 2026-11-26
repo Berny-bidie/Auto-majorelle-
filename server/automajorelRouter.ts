@@ -5,6 +5,7 @@ import { SITE_CONTACT, normalizeBrandName } from "../shared/siteData";
 import { supabasePublishableKey, supabaseUrl } from "./supabase";
 import type { TrpcContext } from "./_core/context";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
+import { isPublicInventorySlug } from "./publicInventory";
 
 const DEFAULT_SETTINGS: Record<string, string> = {
   businessName: SITE_CONTACT.name,
@@ -168,12 +169,12 @@ export const automajorelRouter = router({
       const { data, error } = await query;
       if (error) failDb(error);
       const search = filters.search?.toLocaleLowerCase("fr");
-      return ((data ?? []) as unknown as VehicleRow[]).map(mapVehicle).filter(row => (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === undefined || row.year >= filters.yearFrom) && (filters.yearTo === undefined || row.year <= filters.yearTo) && (filters.budgetMax === undefined || row.priceDh <= filters.budgetMax) && (filters.mileageMax === undefined || row.mileageKm <= filters.mileageMax));
+      return ((data ?? []) as unknown as VehicleRow[]).map(mapVehicle).filter(row => isPublicInventorySlug(row.slug) && (!search || `${row.brand} ${row.model}`.toLocaleLowerCase("fr").includes(search)) && (!filters.category || row.category === filters.category) && (!filters.fuel || row.fuel === filters.fuel) && (!filters.transmission || row.transmission === filters.transmission) && (filters.yearFrom === undefined || row.year >= filters.yearFrom) && (filters.yearTo === undefined || row.year <= filters.yearTo) && (filters.budgetMax === undefined || row.priceDh <= filters.budgetMax) && (filters.mileageMax === undefined || row.mileageKm <= filters.mileageMax));
     }),
     bySlug: publicProcedure.input(z.object({ slug: z.string().min(1).max(140) })).query(async ({ ctx, input }) => {
       const { data, error } = await ctx.supabase.from("vehicles").select(vehicleSelect).eq("slug", input.slug).eq("published", true).eq("availability", "available").maybeSingle();
       if (error) failDb(error);
-      return data ? mapVehicle(data as unknown as VehicleRow) : null;
+      return data && isPublicInventorySlug(data.slug) ? mapVehicle(data as unknown as VehicleRow) : null;
     }),
   }),
   blog: router({

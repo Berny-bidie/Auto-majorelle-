@@ -17,6 +17,8 @@ export default function Home() {
   const brandsQuery = trpc.automajorel.site.brands.useQuery();
   const vehicles = inventory.data ?? [];
   const brands = brandsQuery.data ?? [];
+  const stockBrandNames = new Set(vehicles.map(vehicle => vehicle.brand.toLocaleLowerCase()));
+  const stockBrands = brands.filter(brand => stockBrandNames.has(brand.name.toLocaleLowerCase()));
   const rating = locale === "en" ? GOOGLE_REVIEW_SNAPSHOT.rating.replace(",", ".") : GOOGLE_REVIEW_SNAPSHOT.rating;
   const reviewCount = GOOGLE_REVIEW_SNAPSHOT.count.split(" ")[0];
 
@@ -68,7 +70,7 @@ export default function Home() {
         </div>
       </section>
 
-      {brands.length > 0 && <section className="section section-brands home-brands-section"><div className="container"><div className="section-topline"><SectionHeading eyebrow="MARQUES PUBLIÉES" title="Parcourir par marque" description="Marques présentes dans les annonces actuellement publiées." /><Link className="link-arrow" href="/vehicules">Voir le stock <ArrowRight size={15} /></Link></div><div className="home-brand-list">{brands.slice(0, 8).map(brand => <span key={brand.id}>{brand.name}</span>)}</div></div></section>}
+      {stockBrands.length > 0 && <section className="section section-brands home-brands-section"><div className="container"><div className="section-topline"><SectionHeading eyebrow="MARQUES PUBLIÉES" title="Parcourir par marque" description="Marques présentes dans les annonces actuellement publiées." /><Link className="link-arrow" href="/vehicules">Voir le stock <ArrowRight size={15} /></Link></div><div className="home-brand-list">{stockBrands.slice(0, 8).map(brand => <span key={brand.id}>{brand.name}</span>)}</div></div></section>}
 
       <ContactBand title="Une question avant votre visite ?" text="Appelez le showroom ou écrivez directement à l’équipe." />
     </main>
