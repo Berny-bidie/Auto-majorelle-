@@ -139,7 +139,7 @@
 
 ## Corrections frontend après audit du 25 novembre 2026
 - [x] Rétablir la route tRPC de production au chemin catch-all imbriqué reconnu par Vercel; vérifier en HTTP 200 l’inventaire, les marques et les partenaires de financement.
-- [ ] Masquer côté serveur les lignes `test-*` et `demo-*` dans le catalogue public et les fiches détail; montrer l’état vide tant qu’aucune vraie annonce n’est publiée et disponible.
+- [x] Masquer côté serveur les lignes `test-*` et `demo-*` dans le catalogue public et les fiches détail; montrer l’état vide tant qu’aucune vraie annonce n’est publiée et disponible. Vérifié sur l’API de production : liste vide et fiche de test renvoyant `null`.
 - [x] Priorité catalogue : distinguer clairement l’échec API, les filtres sans résultat et le stock réellement vide; ne pas afficher « 0 véhicule publié » lorsque la requête est en erreur; fournir un contact direct pour vérifier le stock.
 - [x] Accueil : remplacer les sections redondantes par un parcours plus court, centré sur les véhicules effectivement publiés, le showroom, les coordonnées/localisation et les avis Google vérifiables.
 - [x] Véhicules mis en avant : afficher uniquement les annonces chargées depuis le catalogue; ne pas présenter les photos locales d’exemple comme des annonces à vendre.
