@@ -139,7 +139,7 @@
 
 ## Corrections frontend après audit du 25 novembre 2026
 - [x] Rétablir la route tRPC de production au chemin catch-all imbriqué reconnu par Vercel; vérifier en HTTP 200 l’inventaire, les marques et les partenaires de financement.
-- [ ] Réafficher les fiches de démonstration demandées par Auto Majorelle uniquement avec un avertissement visible « Démo — non disponible à la vente », prix signalés comme exemples et sans CTA de vente/rendez-vous sur les fiches. Déployer après contrôle FR/EN/AR.
+- [x] Réafficher les fiches de démonstration demandées par Auto Majorelle uniquement avec un avertissement visible « Démo — non disponible à la vente », prix signalés comme exemples et sans CTA de vente/rendez-vous sur les fiches; avertissements disponibles en FR/EN/AR. Vérifié sur automajorel.vercel.app : les trois fiches détail et leurs routes répondent en HTTP 200, `isDemo` est vrai sur chaque fiche, et le bundle public contient les avertissements traduits.
 - [x] Priorité catalogue : distinguer clairement l’échec API, les filtres sans résultat et le stock réellement vide; ne pas afficher « 0 véhicule publié » lorsque la requête est en erreur; fournir un contact direct pour vérifier le stock.
 - [x] Accueil : remplacer les sections redondantes par un parcours plus court, centré sur les véhicules effectivement publiés, le showroom, les coordonnées/localisation et les avis Google vérifiables.
 - [x] Véhicules mis en avant : afficher uniquement les annonces chargées depuis le catalogue; ne pas présenter les photos locales d’exemple comme des annonces à vendre.
