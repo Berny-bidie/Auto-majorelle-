@@ -16,6 +16,21 @@ app.get("/api/platform/config.js", (_req, res) => {
 });
 app.use("/api/trpc", createExpressMiddleware({ router: appRouter, createContext }));
 
-export default function handler(req: express.Request, res: express.Response) {
-  return app(req, res);
+export default async function handler(req: express.Request, res: express.Response) {
+  await new Promise<void>((resolve, reject) => {
+    const finish = () => {
+      res.removeListener("finish", finish);
+      res.removeListener("close", finish);
+      res.removeListener("error", reject);
+      resolve();
+    };
+    res.once("finish", finish);
+    res.once("close", finish);
+    res.once("error", reject);
+    try {
+      app(req, res);
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
