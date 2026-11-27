@@ -1,1 +1,1 @@
-export { default } from "../../api/handler.ts";
+export { default } from "../handler.js";
