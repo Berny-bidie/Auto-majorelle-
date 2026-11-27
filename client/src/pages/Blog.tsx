@@ -1,4 +1,4 @@
-import { type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
 import { Link, useParams } from "wouter";
 import PageMeta from "@/components/site/PageMeta";
@@ -31,9 +31,9 @@ function localizePost(post: { title: string; category: string; excerpt: string; 
 }
 
 const copy = {
-  fr: { eyebrow: "BLOG & CONSEILS", title: "L’essentiel pour mieux choisir.", intro: "Des repères pratiques pour préparer votre projet automobile à Marrakech.", editorial: "Guides Auto Majorelle", minutes: "min", read: "Lire l’article", published: "Articles publiés", empty: "Les articles publiés par l’équipe apparaîtront ici.", loading: "Chargement de l’article.", back: "Retour au blog", minutesRead: "min de lecture", contact: "Échanger avec Auto Majorelle", more: "POUR ALLER PLUS LOIN", moreTitle: "Un projet automobile ?", moreText: "Contactez l’équipe Auto Majorelle pour des informations propres à votre situation.", viewCars: "Voir les véhicules" },
-  en: { eyebrow: "BLOG & ADVICE", title: "A little guidance for a better choice.", intro: "Practical pointers to help you plan your automotive project in Marrakech.", editorial: "Auto Majorelle guides", minutes: "min", read: "Read article", published: "Published articles", empty: "Articles published by the team will appear here.", loading: "Loading article.", back: "Back to the blog", minutesRead: "min read", contact: "Talk to Auto Majorelle", more: "MORE INFORMATION", moreTitle: "Planning a car purchase?", moreText: "Contact the Auto Majorelle team for information specific to your situation.", viewCars: "View vehicles" },
-  ar: { eyebrow: "المدونة والنصائح", title: "إرشادات تساعدك على الاختيار.", intro: "معلومات عملية لمساعدتك على التخطيط لمشروعك المتعلق بالسيارات في مراكش.", editorial: "أدلة أوتو ماجوريل", minutes: "دقائق", read: "اقرأ المقال", published: "مقالات منشورة", empty: "ستظهر هنا المقالات التي ينشرها الفريق.", loading: "جارٍ تحميل المقال.", back: "العودة إلى المدونة", minutesRead: "دقائق للقراءة", contact: "تواصل مع أوتو ماجوريل", more: "للمزيد من المعلومات", moreTitle: "هل تخطط لشراء سيارة؟", moreText: "تواصل مع فريق أوتو ماجوريل للحصول على معلومات تناسب وضعك.", viewCars: "عرض السيارات" },
+  fr: { eyebrow: "BLOG & CONSEILS", title: "L’essentiel pour mieux choisir.", intro: "Des repères pratiques pour préparer votre projet automobile à Marrakech.", editorial: "Guides Auto Majorelle", minutes: "min", read: "Lire l’article", published: "Articles publiés", empty: "Les articles publiés par l’équipe apparaîtront ici.", loading: "Chargement de l’article.", back: "Retour au blog", minutesRead: "min de lecture", contact: "Échanger avec Auto Majorelle", more: "POUR ALLER PLUS LOIN", moreTitle: "Un projet automobile ?", moreText: "Contactez l’équipe Auto Majorelle pour des informations propres à votre situation.", viewCars: "Voir les véhicules", all: "Tous les thèmes", featured: "À la une", categoryLabel: "Filtrer par thème" },
+  en: { eyebrow: "BLOG & ADVICE", title: "A little guidance for a better choice.", intro: "Practical pointers to help you plan your automotive project in Marrakech.", editorial: "Auto Majorelle guides", minutes: "min", read: "Read article", published: "Published articles", empty: "Articles published by the team will appear here.", loading: "Loading article.", back: "Back to the blog", minutesRead: "min read", contact: "Talk to Auto Majorelle", more: "MORE INFORMATION", moreTitle: "Planning a car purchase?", moreText: "Contact the Auto Majorelle team for information specific to your situation.", viewCars: "View vehicles", all: "All topics", featured: "Featured", categoryLabel: "Filter by topic" },
+  ar: { eyebrow: "المدونة والنصائح", title: "إرشادات تساعدك على الاختيار.", intro: "معلومات عملية لمساعدتك على التخطيط لمشروعك المتعلق بالسيارات في مراكش.", editorial: "أدلة أوتو ماجوريل", minutes: "دقائق", read: "اقرأ المقال", published: "مقالات منشورة", empty: "ستظهر هنا المقالات التي ينشرها الفريق.", loading: "جارٍ تحميل المقال.", back: "العودة إلى المدونة", minutesRead: "دقائق للقراءة", contact: "تواصل مع أوتو ماجوريل", more: "للمزيد من المعلومات", moreTitle: "هل تخطط لشراء سيارة؟", moreText: "تواصل مع فريق أوتو ماجوريل للحصول على معلومات تناسب وضعك.", viewCars: "عرض السيارات", all: "كل المواضيع", featured: "مختارات", categoryLabel: "تصفية حسب الموضوع" },
 } as const;
 
 export default function BlogPage() {
@@ -42,20 +42,29 @@ export default function BlogPage() {
   const posts = trpc.automajorel.blog.list.useQuery();
   const publishedPosts = (posts.data ?? []).map(post => ({ post, localized: localizePost(post, locale) })).filter((entry): entry is { post: typeof entry.post; localized: NonNullable<typeof entry.localized> } => entry.localized !== null);
   const fallbackArticles = getLocalizedFallbackBlogArticles(locale);
+  const [categoryFilter, setCategoryFilter] = useState("all");
+  const categoryOptions = useMemo(() => [...new Set(localizedEditorial.map(article => article.category[locale]))], [locale]);
+  const visibleEditorial = localizedEditorial.filter(article => categoryFilter === "all" || article.category[locale] === categoryFilter);
+  const featuredArticle = localizedEditorial[0];
   return <>
     <PageMeta title="Conseils auto à Marrakech — Blog Auto Majorelle" description="Conseils automobiles, guides d’achat et actualités publiés par Auto Majorelle à Marrakech." />
     <PageIntro eyebrow={labels.eyebrow} title={labels.title} intro={labels.intro} />
     <section className="page-content"><div className="container">
       <SectionHeading eyebrow={labels.editorial} title={labels.title} description={labels.intro} />
+      {featuredArticle && <Link className="featured-article" href={`/blog/${featuredArticle.slug}`}>
+        <img src={featuredArticle.imageUrl} alt={featuredArticle.title[locale]} width="960" height="560" loading="eager" fetchPriority="high" />
+        <div className="featured-article-copy"><span className="eyebrow">{labels.featured}</span><h2>{featuredArticle.title[locale]}</h2><p>{featuredArticle.excerpt[locale]}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
+      </Link>}
+      <div className="blog-toolbar"><span className="eyebrow">{labels.categoryLabel}</span><div className="blog-filters" role="group" aria-label={labels.categoryLabel}><button type="button" className={categoryFilter === "all" ? "active" : ""} onClick={() => setCategoryFilter("all")}>{labels.all}</button>{categoryOptions.map(category => <button type="button" className={categoryFilter === category ? "active" : ""} key={category} onClick={() => setCategoryFilter(category)}>{category}</button>)}</div></div>
       <div className="article-grid">
-        {localizedEditorial.map(article => {
+        {visibleEditorial.map(article => {
           const image = getBlogFallbackImage(article.category.fr);
           return <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
             <img className="article-card-image" src={article.imageUrl} alt={image.alt[locale]} width={image.width} height={image.height} loading="lazy" decoding="async" />
             <div className="article-card-body"><div className="article-card-meta"><span>{article.category[locale]}</span><span><Clock3 size={12} /> {article.readingMinutes} {labels.minutes}</span></div><h2>{article.title[locale]}</h2><p>{article.excerpt[locale]}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
           </Link>;
         })}
-        {fallbackArticles.map(article => <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
+        {fallbackArticles.filter(article => categoryFilter === "all" || article.category === categoryFilter).map(article => <Link className="article-card" href={`/blog/${article.slug}`} key={article.slug}>
           <img className="article-card-image" src={article.imageUrl} alt={article.title} loading="lazy" decoding="async" />
           <div className="article-card-body"><div className="article-card-meta"><span>{article.category}</span><span><Clock3 size={12} /> {article.readingMinutes} {labels.minutes}</span></div><h2>{article.title}</h2><p>{article.excerpt}</p><span className="link-arrow">{labels.read} <ArrowRight size={14} /></span></div>
         </Link>)}

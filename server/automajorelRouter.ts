@@ -193,7 +193,7 @@ export const automajorelRouter = router({
       rejectBot(input.website); limitPublic(ctx, "contact", 10);
       return saveLead(ctx, { submission_id: input.submissionId, type: input.kind, name: input.name, email: input.email || null, phone: input.phone, vehicle_slug: input.vehicleSlug || null, message: input.message, details: { consent: input.consent } });
     }),
-    financing: publicProcedure.input(z.object({ ...leadBase, vehiclePrice: z.number().int().min(0).max(100_000_000), downPayment: z.number().int().min(0).max(100_000_000), termMonths: z.number().int().min(6).max(120), annualRate: z.number().min(0).max(40).nullable() })).mutation(async ({ ctx, input }) => {
+    financing: publicProcedure.input(z.object({ ...leadBase, vehiclePrice: z.number().int().positive().max(100_000_000), downPayment: z.number().int().min(0).max(100_000_000), termMonths: z.number().int().min(6).max(120).nullable(), annualRate: z.number().min(0).max(40).nullable() }).refine((input) => input.downPayment <= input.vehiclePrice, { message: "L’apport ne peut pas dépasser le prix du véhicule.", path: ["downPayment"] })).mutation(async ({ ctx, input }) => {
       rejectBot(input.website); limitPublic(ctx, "financing", 8);
       return saveLead(ctx, { submission_id: input.submissionId, type: "financing", name: input.name, email: input.email || null, phone: input.phone, message: input.message, details: { vehiclePrice: input.vehiclePrice, downPayment: input.downPayment, termMonths: input.termMonths, annualRate: input.annualRate, consent: input.consent } });
     }),
